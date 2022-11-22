@@ -92,3 +92,7 @@ Content-Type: application/json
 
 GET http://localhost:3002/api/v1/validate
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVmIiwiaWF0IjoxNjY4ODI3NDk4LCJleHAiOjE2Njg4MjgwOTh9.QYM7uAXumKTjRTK8kowuOo4J7v4tWrqx36OuSaoQcLs
+
+###
+
+GET http://localhost:3002/api/vi/data/admin HTTP/1.1

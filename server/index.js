@@ -19,6 +19,7 @@ const registerRoute = require("./routes/register");
 const searchRoute = require("./routes/search");
 const createLoanRoute = require("./routes/create_loan");
 const updateLoanRoute = require("./routes/update_loan");
+const adminRoute = require("./routes/admin");
 
 // PERSONAL MIDDLEWARES
 app.use("/", validate);
@@ -27,6 +28,7 @@ app.use("/", registerRoute);
 app.use("/", searchRoute);
 app.use("/", createLoanRoute);
 app.use("/", updateLoanRoute);
+app.use("/", adminRoute);
 // DEV ROUTE
 
 // UNIVERSAL ROUTE

@@ -2,13 +2,23 @@
   <div class="user-analytics">
     <div class="registered-users">
         <p>Registered Users</p>
-        <h2>12</h2>
+        <h2>{{registeredUsers}}</h2>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+    name: "user-analytics",
+    props: ["users"],
+    data() {
+        return {
+            registeredUsers: ""
+        }
+    },
+    created() {
+        this.registeredUsers = this.users.length;
+    }
 
 }
 </script>

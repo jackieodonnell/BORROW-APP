@@ -2,7 +2,7 @@
   <div class="dashboard">
     <transaction-approvals />
     <loan-analytics />
-    <user-analytics />
+    <user-analytics v-bind:users="users"/>
   </div>
 </template>
 
@@ -11,6 +11,7 @@
 import TransactionApprovals from '../components/TransactionApprovals.vue'
 import LoanAnalytics from '../components/LoanAnalytics.vue'
 import UserAnalytics from '../components/UserAnalytics.vue'
+import DataService from '../services/DataService.js'
 
 export default {
   name: 'HomeView',
@@ -18,7 +19,22 @@ export default {
     TransactionApprovals,
     LoanAnalytics,
     UserAnalytics
-  }
+  },
+  data() {
+    return {
+      users: [],
+      loans: []
+    }
+  },
+  created() {
+    DataService.getData().then((response) => {
+      if (response.status == 200) {
+        console.log(response);
+        this.users = response.data.users;
+        this.loans = response.data.loans;
+      }
+    })
+  },
 }
 </script>
 
