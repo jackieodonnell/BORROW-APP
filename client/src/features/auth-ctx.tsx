@@ -3,6 +3,14 @@ import React, { createContext, useState, useContext } from "react";
 import { UiCtx } from "./ui-ctx";
 import { inputData } from "../models/auth";
 import { UserCtx } from "./user-ctx";
+import { storeToken, clearLocalStorage } from "../utils/token";
+
+const inputDataTemplate = {
+  email: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+};
 
 interface ctxType {
   isAuth: boolean;
@@ -13,6 +21,7 @@ interface ctxType {
   setInputData: React.Dispatch<React.SetStateAction<inputData>>;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmitAuth: (e: React.FormEvent<HTMLImageElement>) => void;
+  onLogout: () => void;
 }
 
 export const AuthCtx = createContext<ctxType>({
@@ -24,6 +33,7 @@ export const AuthCtx = createContext<ctxType>({
   setInputData: () => {},
   onInputChange: () => {},
   onSubmitAuth: () => {},
+  onLogout: () => {},
 });
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -33,12 +43,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const uiMgr = useContext(UiCtx);
   const [isAuth, setIsAuth] = useState(false);
   const [isLoggin, setIsLoggin] = useState(false);
-  const [inputData, setInputData] = useState<inputData>({
-    email: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [inputData, setInputData] = useState<inputData>(inputDataTemplate);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,25 +52,28 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const onClearInputData = () => setInputData(inputDataTemplate);
+
   const onSubmitAuth = async (e: React.FormEvent<HTMLImageElement>) => {
     e.preventDefault();
     let url = isLoggin ? "/api/v1/login" : "/api/v1/register";
     await axios
       .post(url, inputData)
       .then((serverRes) => {
-        console.log(serverRes.data);
         userMgr.setCurrentUser(serverRes.data);
-        console.log(userMgr.currentUser);
         uiMgr.dispatch({ type: "DASHBOARD" });
         setIsAuth(true);
-        setInputData({
-          email: "",
-          username: "",
-          password: "",
-          confirmPassword: "",
-        });
+        storeToken(serverRes);
+        onClearInputData();
       })
       .catch((err) => console.log(err.response));
+  };
+
+  const onLogout = () => {
+    userMgr.clearCurrentUser();
+    uiMgr.dispatch({ type: "CLOSE" });
+    setIsAuth(false);
+    clearLocalStorage();
   };
 
   return (
@@ -79,6 +87,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         setInputData,
         onInputChange,
         onSubmitAuth,
+        onLogout,
       }}
     >
       {children}
