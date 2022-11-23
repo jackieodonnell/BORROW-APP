@@ -1,0 +1,41 @@
+.article {
+  background-image: linear-gradient(
+    to bottom left,
+    #9ab85f,
+    #9ab85f,
+    #5f9ab8,
+    #b85f9a
+  );
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh 5vw;
+  gap: 2vh;
+}
+
+.h1,
+.h2 {
+  color: white;
+  font-family: "Arista2.0";
+}
+.h1 {
+  font-size: 3.75em;
+  margin-top: 3vh;
+}
+.h2 {
+  margin-top: -2vh;
+  font-size: 11em;
+}
+
+.logo {
+  width: 32.5%;
+}
+
+.btn {
+  width: 25em;
+  margin-top: 2.5vh;
+  cursor: pointer;
+}

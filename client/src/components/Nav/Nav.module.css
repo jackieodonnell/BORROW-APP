@@ -1,0 +1,16 @@
+.nav {
+  height: 12.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #00000040;
+}
+.btn {
+  width: 6em;
+  cursor: pointer;
+}

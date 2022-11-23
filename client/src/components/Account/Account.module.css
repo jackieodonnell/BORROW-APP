@@ -1,0 +1,60 @@
+.section {
+  background-color: #b85f9a;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5vh;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  width: 6em;
+  z-index: 2;
+  right: 7.5em;
+  top: 5em;
+  cursor: pointer;
+}
+.avatar {
+  width: 17.5em;
+}
+
+.idBox {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: space-between;
+  height: 5vh;
+  width: 20em;
+}
+.p,
+.user {
+  font-size: 2em;
+  font-family: "Raleway-heavy";
+  font-weight: bold;
+  color: white;
+}
+.user {
+  background-color: white;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15em;
+  color: rgb(69, 68, 68);
+  font-family: "raleway";
+}
+@font-face {
+  font-family: "Raleway-heavy";
+  src: url("../../assets/fonts/raleway/Raleway-Heavy.ttf");
+  font-style: normal;
+}
+
+@media (max-width: 786px) {
+  .icon {
+    right: 5em;
+    top: 5em;
+  }
+}

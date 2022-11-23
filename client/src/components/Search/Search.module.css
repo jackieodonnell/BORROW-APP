@@ -1,0 +1,38 @@
+.section {
+  background-color: #9ab85f;
+  height: 100vh;
+  width: 100%;
+  padding: 5vh 5vw;
+}
+.h3 {
+  font-family: "Arista2.0";
+  color: white;
+  font-size: 5em;
+  width: 100%;
+  text-align: center;
+}
+
+.form {
+  padding: 5vh 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  flex-direction: column;
+}
+.input {
+  height: 5vh;
+  width: 15em;
+  text-align: center;
+  font-family: "raleway";
+  border: transparent;
+  outline: none;
+}
+.submit {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+.submitImg {
+  width: 12.5em;
+}

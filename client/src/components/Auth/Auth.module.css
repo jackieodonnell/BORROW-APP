@@ -1,0 +1,58 @@
+.form {
+  background-image: linear-gradient(
+    to bottom left,
+    #9ab85f,
+    #9ab85f,
+    #5f9ab8,
+    #b85f9a
+  );
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh 5vw;
+  gap: 2vh;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  width: 6em;
+  z-index: 2;
+  right: 7.5em;
+  top: 5em;
+  cursor: pointer;
+}
+
+.p {
+  font-family: "Arista2.0";
+  font-size: 9em;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 2.5vh;
+}
+.input {
+  height: 5vh;
+  width: 15em;
+  outline: none;
+  border: transparent;
+  text-align: center;
+  font-family: "raleway";
+}
+.input::placeholder {
+  font-family: "raleway";
+}
+.btn {
+  width: 22.5em;
+  margin-top: 5vh;
+  cursor: pointer;
+}
+
+@media (max-width: 786px) {
+  .close {
+    right: 5em;
+    top: 5em;
+  }
+}

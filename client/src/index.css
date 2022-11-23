@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100vh;
+  width: 100vw;
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Arista2.0";
+  src: url("./assets/fonts/arista-2.0/Arista2.0.ttf");
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("./assets/fonts/raleway/Raleway-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway-light";
+  src: url("./assets/fonts/raleway/Raleway-ExtraLight.ttf");
+  font-style: normal;
+}
+
+@media (max-width: 786px) {
+  html {
+    font-size: 55.5%;
+  }
+}
