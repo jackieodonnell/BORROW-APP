@@ -22,6 +22,7 @@ interface ctxType {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmitAuth: (e: React.FormEvent<HTMLImageElement>) => void;
   onLogout: () => void;
+  isTokenExp: () => void;
 }
 
 export const AuthCtx = createContext<ctxType>({
@@ -34,6 +35,7 @@ export const AuthCtx = createContext<ctxType>({
   onInputChange: () => {},
   onSubmitAuth: () => {},
   onLogout: () => {},
+  isTokenExp: () => {},
 });
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -69,6 +71,34 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch((err) => console.log(err.response));
   };
 
+  const isTokenExp = async () => {
+    const storedData = localStorage.getItem("userValidation");
+
+    if (typeof storedData === "string") {
+      const parse = JSON.parse(storedData);
+
+      if (parse && new Date(parse.expiration) > new Date()) {
+        uiMgr.dispatch({ type: "DASHBOARD" });
+
+        await axios
+          .get(`/api/v1/${parse.username}/validate`, {
+            headers: { authorization: parse.token },
+          })
+          .then((serverRes) => {
+            userMgr.setCurrentUser({
+              user: serverRes.data.user,
+              token: parse.token,
+              loans: serverRes.data.loans,
+            });
+            return setIsAuth(true);
+          })
+          .catch((err) => console.log(err));
+      }
+
+      return setIsAuth(false);
+    }
+  };
+
   const onLogout = () => {
     userMgr.clearCurrentUser();
     uiMgr.dispatch({ type: "CLOSE" });
@@ -88,6 +118,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         onInputChange,
         onSubmitAuth,
         onLogout,
+        isTokenExp,
       }}
     >
       {children}

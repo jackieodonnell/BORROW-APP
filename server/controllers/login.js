@@ -1,26 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { pool } = require("../database/queries");
-
-async function selectFrom(data, table, condition) {
-  try {
-    return await pool.query(`SELECT ${data} FROM ${table} ${condition}`);
-  } catch (err) {
-    return err.stack;
-  }
-}
-
-async function getUserByUsername(username) {
-  return await selectFrom("*", "users", `WHERE username = '${username}'`);
-}
-
-async function getLoansByUsername(username) {
-  return await selectFrom(
-    "*",
-    "loans",
-    `WHERE lender = '${username}' OR borrower = '${username}'`
-  );
-}
+const { getUserByUsername, getLoansByUsername } = require("../utils/db");
 
 const loginControl = async (req, res) => {
   const { username, password } = req.body;
@@ -30,7 +11,6 @@ const loginControl = async (req, res) => {
 
   let results = await getUserByUsername(username);
   const user = results.rows[0];
-  console.log(user);
 
   if (!user) return res.status(404).json({ message: "User not registered" });
 
