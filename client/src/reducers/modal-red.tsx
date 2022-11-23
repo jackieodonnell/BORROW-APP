@@ -67,7 +67,6 @@ const ModalRed = (state: ModalStateType, action: ModalActionType) => {
     }
 
     case "CLOSE": {
-      console.log("Closing");
       return { ...ModalState };
     }
     default:

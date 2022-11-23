@@ -8,7 +8,7 @@ const LoanList: React.FC = () => {
 
   return (
     <ul className={classes.ul}>
-      {userMgr.currentUser.loans.reverse().map((obj, index) => {
+      {userMgr.currentUser.loans.map((obj, index) => {
         return <LoanItem key={`LOAN_${index}`} obj={obj} />;
       })}
     </ul>

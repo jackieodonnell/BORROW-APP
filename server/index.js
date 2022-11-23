@@ -5,6 +5,8 @@ const path = require("path");
 require("dotenv").config();
 const app = express();
 const { pool } = require("./database/queries");
+const jwt = require("jsonwebtoken");
+const { getLoansByUsername, getUserByUsername } = require("./utils/db");
 
 // MIDDLEWARES
 app.use(morgan("dev"));
@@ -19,6 +21,7 @@ const registerRoute = require("./routes/register");
 const searchRoute = require("./routes/search");
 const createLoanRoute = require("./routes/create_loan");
 const updateLoanRoute = require("./routes/update_loan");
+const refetchRoute = require("./routes/refetch");
 
 // PERSONAL MIDDLEWARES
 app.use("/", validate);
@@ -27,6 +30,7 @@ app.use("/", registerRoute);
 app.use("/", searchRoute);
 app.use("/", createLoanRoute);
 app.use("/", updateLoanRoute);
+app.use("/", refetchRoute);
 // DEV ROUTE
 
 // UNIVERSAL ROUTE

@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 const validateControl = (req, res) => {
   let token = req.headers.authorization;
-  console.log(token);
 
   if (!token) {
     res.status(401).json({ message: "No token found" });

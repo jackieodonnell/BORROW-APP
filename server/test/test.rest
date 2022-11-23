@@ -95,5 +95,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVm
 
 ###
 
+### 
 
+# REFETCH USER
 
+GET http://localhost:3002/api/v1/yeyoteef/validate
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVmIiwiaWF0IjoxNjY5MjM3NDE2LCJleHAiOjE2NjkyMzgwMTZ9.xfMHNcT5CKnDWEoryJ6wYyAWtXtauT5CPHFWz5tvGQg
+
+###
+
+   

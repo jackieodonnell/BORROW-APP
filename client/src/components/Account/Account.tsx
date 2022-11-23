@@ -5,9 +5,11 @@ import accountPic from "../../assets/images/account-hover.png";
 import settingsActive from "../../assets/images/settings-hover.png";
 import settingsInactive from "../../assets/images/settings-inactive.png";
 import Nav from "../Nav/Nav";
+import { AuthCtx } from "../../features/auth-ctx";
 
 const Account: React.FC = () => {
   const userMgr = useContext(UserCtx);
+  const authMgr = useContext(AuthCtx);
   const [settingsHover, setSettingsHover] = useState(false);
 
   return (
@@ -17,6 +19,7 @@ const Account: React.FC = () => {
         className={classes.icon}
         onMouseOver={() => setSettingsHover(true)}
         onMouseLeave={() => setSettingsHover(false)}
+        onClick={() => authMgr.onLogout()}
       />
       <img src={accountPic} className={classes.avatar} />
 
@@ -24,12 +27,6 @@ const Account: React.FC = () => {
         <p className={classes.p}>ID</p>
         <p className={classes.user}>{userMgr.currentUser.user}</p>
       </div>
-
-      {/* log out button 
-                <button
-                onClick={()=>{
-                    localStorage.removeItem("userValidation");
-                }}>Log out</button> */}
       <Nav />
     </section>
   );
