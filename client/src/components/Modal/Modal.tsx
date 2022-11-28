@@ -5,6 +5,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import Account from "../Account/Account";
 import Search from "../Search/Search";
 import { UiCtx } from "../../features/ui-ctx";
+import Confirmation from "../Confirmation/Confirmation";
+import Spinner from "../Spinner/Spinner";
 const Modal: React.FC = () => {
   const uiMgr = useContext(UiCtx);
 
@@ -14,8 +16,8 @@ const Modal: React.FC = () => {
       {uiMgr.state.showDashboard && <Dashboard />}
       {uiMgr.state.showAccount && <Account />}
       {uiMgr.state.showSearch && <Search />}
-
-      {/* {authMgr.state.loading && <Loading />} */}
+      {uiMgr.state.showConfirmation && <Confirmation />}
+      {uiMgr.state.loading && <Spinner />}
     </Portal>
   );
 };
