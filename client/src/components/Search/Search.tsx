@@ -1,29 +1,59 @@
 import classes from "./Search.module.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
-import borrowActive from "../../assets/images/borrow-hover-1.png";
-import borrowInactive from "../../assets/images/borrow-inactive-1.png";
-import lendActive from "../../assets/images/lend-hover.png";
-import lendInactive from "../../assets/images/lend-inactive.png";
 import Nav from "../Nav/Nav";
+import { UserCtx } from "../../features/user-ctx";
+import { NewLoanCtx } from "../../features/new-loan-ctx";
 
 const Search: React.FC = () => {
+  const userMgr = useContext(UserCtx);
+  const newLoanMgr = useContext(NewLoanCtx);
   const [submitHover, setSubmitHover] = useState(false);
-  const [borrowHover, setBorrowHover] = useState(false);
-  const [lendHover, setLendHover] = useState(false);
-  const [searchUser, setSearchUser] = useState({ username: "" });
+
   return (
     <section className={classes.section}>
-      <h3 className={classes.h3}>Search User</h3>
+      <h3 className={classes.h3}>
+        {userMgr.isLending ? "Lend to" : "Borrow from"}
+      </h3>
       <form className={classes.form}>
         <input
           className={classes.input}
-          placeholder="search username"
-          // onChange={changeHandler}
-          // value={usernameSearch}
+          placeholder="username"
           required
-          name="username"
+          name={userMgr.isLending ? "borrower" : "lender"}
+          value={
+            userMgr.isLending
+              ? newLoanMgr.loanData.borrower
+              : newLoanMgr.loanData.lender
+          }
+          onChange={newLoanMgr.onLoanDataChange}
+        />
+        {newLoanMgr.serverErr && <p>User not found</p>}
+        <input
+          className={classes.input}
+          placeholder="amount"
+          required
+          name="amount"
+          value={newLoanMgr.loanData.amount}
+          onChange={newLoanMgr.onLoanDataChange}
+        />
+        <input
+          className={classes.input}
+          placeholder="for"
+          required
+          name="description"
+          value={newLoanMgr.loanData.description}
+          onChange={newLoanMgr.onLoanDataChange}
+        />
+        <label> Due on</label>
+        <input
+          type="date"
+          className={classes.input}
+          required
+          name="due_date"
+          value={newLoanMgr.loanData.due_date}
+          onChange={newLoanMgr.onLoanDataChange}
         />
         <button type="submit" className={classes.submit}>
           <img
@@ -31,31 +61,11 @@ const Search: React.FC = () => {
             src={submitHover ? submitActive : submitInactive}
             onMouseOver={() => setSubmitHover(true)}
             onMouseLeave={() => setSubmitHover(false)}
+            onClick={newLoanMgr.testApi}
           />
         </button>
       </form>
-      {searchUser.username ? (
-        <div id="user">
-          <div>
-            <p>username: Username</p>
-            <p>email: Email</p>
-            <p>rep: Reputation</p>
-          </div>
-          <img
-            src={borrowHover ? borrowActive : borrowInactive}
-            className="borrow-lend"
-            onMouseOver={() => setBorrowHover(true)}
-            onMouseLeave={() => setBorrowHover(false)}
-          />
 
-          <img
-            src={lendHover ? lendActive : lendInactive}
-            className="borrow-lend"
-            onMouseOver={() => setLendHover(true)}
-            onMouseLeave={() => setLendHover(false)}
-          />
-        </div>
-      ) : null}
       <Nav />
     </section>
   );

@@ -1,0 +1,42 @@
+.article {
+  background-image: linear-gradient(to bottom left, #9ab85f, #5f9ab8, #b85f9a);
+  height: 100vh;
+  width: 100%;
+  padding: 5vh 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vh;
+}
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 20em;
+  height: 20em;
+}
+
+.spinner::after {
+  content: "";
+  position: absolute;
+  width: 10em;
+  height: 10em;
+  background-image: linear-gradient(to bottom left, #9ab85f, #5f9ab8, #b85f9a);
+  animation: flip 1s infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(180deg) rotateX(180deg);
+  }
+}

@@ -34,7 +34,7 @@ const registerControl = (req, res) => {
 
           let token;
           token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
-            expiresIn: "600s",
+            expiresIn: "1hr",
           });
 
           res.status(201).json({

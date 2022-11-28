@@ -30,7 +30,7 @@ const loginControl = async (req, res) => {
 
     let token;
     token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
-      expiresIn: "600s",
+      expiresIn: "1hr",
     });
 
     return res.status(200).json({

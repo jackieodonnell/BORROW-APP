@@ -58,6 +58,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const onSubmitAuth = async (e: React.FormEvent<HTMLImageElement>) => {
     e.preventDefault();
+    uiMgr.dispatch({ type: "LOADING" });
     let url = isLoggin ? "/api/v1/login" : "/api/v1/register";
     await axios
       .post(url, inputData)
@@ -68,7 +69,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         storeToken(serverRes);
         onClearInputData();
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => {
+        uiMgr.dispatch({ type: "CLOSE" });
+        console.log(err.response);
+      });
   };
 
   const isTokenExp = async () => {
@@ -78,7 +82,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const parse = JSON.parse(storedData);
 
       if (parse && new Date(parse.expiration) > new Date()) {
-        uiMgr.dispatch({ type: "DASHBOARD" });
+        uiMgr.dispatch({ type: "LOADING" });
 
         await axios
           .get(`/api/v1/${parse.username}/validate`, {
@@ -90,12 +94,15 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
               token: parse.token,
               loans: serverRes.data.loans,
             });
-            return setIsAuth(true);
+            setIsAuth(true);
+            return uiMgr.dispatch({ type: "DASHBOARD" });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            uiMgr.dispatch({ type: "CLOSE" });
+            console.log(err);
+            return setIsAuth(false);
+          });
       }
-
-      return setIsAuth(false);
     }
   };
 

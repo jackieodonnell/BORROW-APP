@@ -5,6 +5,7 @@ import App from "./App";
 import AuthProvider from "./features/auth-ctx";
 import UiProvider from "./features/ui-ctx";
 import UserProvider from "./features/user-ctx";
+import NewLoanProvider, { NewLoanCtx } from "./features/new-loan-ctx";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,7 +15,9 @@ root.render(
     <UiProvider>
       <UserProvider>
         <AuthProvider>
-          <App />
+          <NewLoanProvider>
+            <App />
+          </NewLoanProvider>
         </AuthProvider>
       </UserProvider>
     </UiProvider>

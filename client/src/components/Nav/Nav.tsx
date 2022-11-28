@@ -4,15 +4,25 @@ import accountActive from "../../assets/images/account-hover.png";
 import accountInactive from "../../assets/images/account-inactive.png";
 import trackActive from "../../assets/images/track-hover.png";
 import trackInactive from "../../assets/images/track-inactive.png";
-import searchActive from "../../assets/images/search-hover.png";
-import searchInactive from "../../assets/images/search-inactive.png";
+import borrowActive from "../../assets/images/borrow-hover-1.png";
+import borrowInactive from "../../assets/images/borrow-inactive-1.png";
+import lendActive from "../../assets/images/lend-hover.png";
+import lendInactive from "../../assets/images/lend-inactive.png";
+
 import { UiCtx } from "../../features/ui-ctx";
+import { UserCtx } from "../../features/user-ctx";
+import { NewLoanCtx } from "../../features/new-loan-ctx";
 
 const Nav: React.FC = () => {
   const uiMgr = useContext(UiCtx);
+  const userMgr = useContext(UserCtx);
+  const newLoanMgr = useContext(NewLoanCtx);
+
   const [accountHover, setAccountHover] = useState(false);
   const [trackHover, setTrackHover] = useState(false);
-  const [searchHover, setSearchHover] = useState(false);
+  const [borrowHover, setBorrowHover] = useState(false);
+  const [lendHover, setLendHover] = useState(false);
+
   return (
     <nav className={classes.nav}>
       <img
@@ -31,13 +41,30 @@ const Nav: React.FC = () => {
         onMouseOver={() => setTrackHover(true)}
         onMouseLeave={() => setTrackHover(false)}
       />
+
       <img
-        src={searchHover ? searchActive : searchInactive}
+        src={borrowHover ? borrowActive : borrowInactive}
         alt="search button"
         className={classes.btn}
-        onClick={() => uiMgr.dispatch({ type: "SEARCH" })}
-        onMouseOver={() => setSearchHover(true)}
-        onMouseLeave={() => setSearchHover(false)}
+        onClick={() => {
+          newLoanMgr.clearLoanData();
+          userMgr.setIsLending(false);
+          uiMgr.dispatch({ type: "SEARCH" });
+        }}
+        onMouseOver={() => setBorrowHover(true)}
+        onMouseLeave={() => setBorrowHover(false)}
+      />
+      <img
+        src={lendHover ? lendActive : lendInactive}
+        alt="search button"
+        className={classes.btn}
+        onClick={() => {
+          newLoanMgr.clearLoanData();
+          userMgr.setIsLending(true);
+          uiMgr.dispatch({ type: "SEARCH" });
+        }}
+        onMouseOver={() => setLendHover(true)}
+        onMouseLeave={() => setLendHover(false)}
       />
     </nav>
   );

@@ -3,9 +3,7 @@ const { getLoansByUsername, getUserByUsername } = require("../utils/db");
 
 const refetchControl = (req, res) => {
   let username = req.params.user;
-  console.log(username);
   let token = req.headers.authorization;
-  console.log(token);
 
   if (!token) {
     res.status(401).json({ message: "No token found" });

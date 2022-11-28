@@ -3,6 +3,7 @@ import { AuthCtx } from "./features/auth-ctx";
 import { UiCtx } from "./features/ui-ctx";
 import Welcome from "./components/Welcome/Welcome";
 import Modal from "./components/Modal/Modal";
+import Spinner from "./components/Spinner/Spinner";
 
 function App() {
   const authMgr = useContext(AuthCtx);
