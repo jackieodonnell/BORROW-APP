@@ -3,6 +3,7 @@ import { User } from "../models/user";
 
 const currentUserTemplate = {
   user: "",
+  reputation: "",
   token: "",
   loans: [],
 };
