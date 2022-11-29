@@ -66,4 +66,7 @@
     height: auto;
     margin-right: unset;
   }
+  .user {
+    height: 5vh;
+  }
 }
