@@ -1,5 +1,5 @@
 export const storeToken = (serverRes: {
-  data: { user: string; token: string; loans: [] };
+  data: { user: string; reputation: string; token: string; loans: [] };
 }) => {
   let token = serverRes.data.token;
   const myExp = new Date(new Date().getTime() + 1000 * 60 * 60);
@@ -8,6 +8,7 @@ export const storeToken = (serverRes: {
     JSON.stringify({
       username: serverRes.data.user,
       token,
+      reputation: serverRes.data.reputation,
       expiration: myExp.toISOString(),
     })
   );
