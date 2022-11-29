@@ -11,21 +11,31 @@ const Account: React.FC = () => {
   const userMgr = useContext(UserCtx);
   const authMgr = useContext(AuthCtx);
   const [settingsHover, setSettingsHover] = useState(false);
-
+  console.log(userMgr.currentUser);
   return (
     <section className={classes.section}>
-      <img
+      <span
+        className="material-symbols-outlined"
+        onClick={() => authMgr.onLogout()}
+      >
+        logout
+      </span>
+
+      {/* <img
         src={settingsHover ? settingsActive : settingsInactive}
         className={classes.icon}
         onMouseOver={() => setSettingsHover(true)}
         onMouseLeave={() => setSettingsHover(false)}
         onClick={() => authMgr.onLogout()}
-      />
+      /> */}
       <img src={accountPic} className={classes.avatar} />
-
       <div className={classes.idBox}>
         <p className={classes.p}>ID</p>
         <p className={classes.user}>{userMgr.currentUser.user}</p>
+      </div>
+      <div className={classes.idBox}>
+        <p className={classes.p}>PAYBACK SCORE</p>
+        <p className={classes.user}>{userMgr.currentUser.reputation}</p>
       </div>
       <Nav />
     </section>

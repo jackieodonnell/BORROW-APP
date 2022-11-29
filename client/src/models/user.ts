@@ -1,5 +1,6 @@
 export type User = {
   user: string;
+  reputation: string;
   token: string;
   loans: Loans[];
 };

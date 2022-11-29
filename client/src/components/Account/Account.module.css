@@ -27,7 +27,8 @@
   align-items: center;
   justify-content: space-between;
   height: 5vh;
-  width: 20em;
+  width: 40em;
+  margin-right: 15em;
 }
 .p,
 .user {
@@ -35,6 +36,8 @@
   font-family: "Raleway-heavy";
   font-weight: bold;
   color: white;
+  width: 7.5em;
+  text-align: center;
 }
 .user {
   background-color: white;
@@ -56,5 +59,11 @@
   .icon {
     right: 5em;
     top: 5em;
+  }
+  .idBox {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    margin-right: unset;
   }
 }

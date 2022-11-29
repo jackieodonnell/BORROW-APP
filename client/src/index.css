@@ -9,6 +9,16 @@ html {
   font-size: 62.5%;
 }
 
+.material-symbols-outlined {
+  position: absolute;
+  font-size: 6em;
+  z-index: 2;
+  right: 1em;
+  top: 1em;
+  cursor: pointer;
+  color: white;
+}
+
 @font-face {
   font-family: "Arista2.0";
   src: url("./assets/fonts/arista-2.0/Arista2.0.ttf");
@@ -31,5 +41,9 @@ html {
 @media (max-width: 786px) {
   html {
     font-size: 55.5%;
+  }
+  .material-symbols-outlined {
+    right: 0.5em;
+    top: 0.5em;
   }
 }
