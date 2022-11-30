@@ -3,6 +3,7 @@ import axios from "axios";
 import { UserCtx } from "./user-ctx";
 import { LoanRequest } from "../models/loan";
 import { UiCtx } from "./ui-ctx";
+import { LoanActionCtx } from "./loan-action-ctx";
 
 type NewLoanType = {
   loanData: LoanRequest;
@@ -44,6 +45,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const userMgr = useContext(UserCtx);
+  const loanActMgr = useContext(LoanActionCtx);
   const uiMgr = useContext(UiCtx);
 
   const loanTemplate = {
@@ -103,10 +105,9 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .post("/api/v1/loan", objToSend)
       .then((serverRes) => {
-        // UNSHIFT DATA TO ARRAY OF LOANS
-        // FROM USER CONTEXT
-
-        console.log(serverRes.data);
+        let arr = userMgr.currentUser.loans;
+        arr.unshift(serverRes.data);
+        loanActMgr.setLoansToFilter(arr);
         uiMgr.dispatch({ type: "DASHBOARD" });
         clearLoanData();
       })

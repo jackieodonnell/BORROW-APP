@@ -63,6 +63,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .post(url, inputData)
       .then((serverRes) => {
+        serverRes.data.loans.reverse();
         userMgr.setCurrentUser(serverRes.data);
         uiMgr.dispatch({ type: "DASHBOARD" });
         setIsAuth(true);
@@ -71,7 +72,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       })
       .catch((err) => {
         uiMgr.dispatch({ type: "CLOSE" });
-        console.log(err.response);
+        console.log(err);
       });
   };
 

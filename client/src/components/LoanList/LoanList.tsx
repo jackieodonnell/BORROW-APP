@@ -1,5 +1,5 @@
 import classes from "./LoanList.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserCtx } from "../../features/user-ctx";
 import LoanItem from "../LoanItem/LoanItem";
 
@@ -32,6 +32,10 @@ const LoanList: React.FC = () => {
       });
     });
   };
+
+  useEffect(() => {
+    filter("pending", "pending");
+  }, []);
 
   return (
     <>

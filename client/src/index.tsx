@@ -6,6 +6,7 @@ import AuthProvider from "./features/auth-ctx";
 import UiProvider from "./features/ui-ctx";
 import UserProvider from "./features/user-ctx";
 import NewLoanProvider, { NewLoanCtx } from "./features/new-loan-ctx";
+import LoanActionProvider from "./features/loan-action-ctx";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,9 +16,11 @@ root.render(
     <UiProvider>
       <UserProvider>
         <AuthProvider>
-          <NewLoanProvider>
-            <App />
-          </NewLoanProvider>
+          <LoanActionProvider>
+            <NewLoanProvider>
+              <App />
+            </NewLoanProvider>
+          </LoanActionProvider>
         </AuthProvider>
       </UserProvider>
     </UiProvider>
