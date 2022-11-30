@@ -54,7 +54,7 @@ const Nav: React.FC = () => {
         onMouseOver={() => setBorrowHover(true)}
         onMouseLeave={() => setBorrowHover(false)}
       />
-      <img
+      {/* <img
         src={lendHover ? lendActive : lendInactive}
         alt="search button"
         className={classes.btn}
@@ -65,7 +65,7 @@ const Nav: React.FC = () => {
         }}
         onMouseOver={() => setLendHover(true)}
         onMouseLeave={() => setLendHover(false)}
-      />
+      /> */}
     </nav>
   );
 };

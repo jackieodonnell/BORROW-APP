@@ -1,15 +1,15 @@
 .li {
-  /* border: white solid 3px; */
   border-radius: 20px;
-  width: 50%;
-  height: auto;
+  width: 90%;
+  min-height: 16.5vh;
   padding: 0.5em;
-  background: linear-gradient(90deg, #9ab85f, #00000040, #b85f9a);
-}
-.padLi {
+  border: solid 3px white;
   padding: 1em;
-  background-color: #5f9ab8;
-  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .p {
@@ -18,20 +18,27 @@
   color: white;
 }
 
-.titleBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 .h4,
 .x {
   text-align: center;
   font-size: 2.5em;
   color: rgba(255, 255, 255, 0.905);
   font-family: "arista2.0";
-  margin-bottom: 1vh;
 }
 .x {
+  width: 100%;
+  padding: 0 1vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.span1,
+.span2 {
+  position: absolute;
   cursor: pointer;
-  order: 1;
+  top: 0.5em;
+}
+.span2 {
+  right: 2em;
 }
