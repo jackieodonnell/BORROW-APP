@@ -91,8 +91,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           .then((serverRes) => {
             userMgr.setCurrentUser({
               user: serverRes.data.user,
-              // STORE REPUTATION LOCAL STORAGE
-              // THIS WILL CRASH
               reputation: parse.reputation,
               token: parse.token,
               loans: serverRes.data.loans,
