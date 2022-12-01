@@ -23,7 +23,6 @@ const searchRoute = require("./routes/search");
 const createLoanRoute = require("./routes/create_loan");
 const updateLoanRoute = require("./routes/update_loan");
 const refetchRoute = require("./routes/refetch");
-const adminRoute = require("./routes/admin");
 
 // PERSONAL MIDDLEWARES
 app.use("/", validate);
@@ -33,16 +32,10 @@ app.use("/", searchRoute);
 app.use("/", createLoanRoute);
 app.use("/", updateLoanRoute);
 app.use("/", refetchRoute);
-<<<<<<< HEAD
 // app.use("/", adminRoute);
 
 // ADMIN ROUTE
-app.get("/api/v1/data/admin", adminControl)
-=======
-app.use("/", adminRoute);
-
-// DEV ROUTE
->>>>>>> 2636e66 (added update_loan, update_user, and admin routes)
+app.get("/api/v1/data/admin", adminControl);
 
 // UNIVERSAL ROUTE
 app.get("*", (req, res) => {
