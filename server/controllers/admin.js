@@ -19,7 +19,7 @@ async function getLoans() {
 const adminControl = async (req, res) => {
 
     let results = await getUsers();
-     const users = results.rows;
+    const users = results.rows;
 
     results = await getLoans();
     const loans = results.rows;
