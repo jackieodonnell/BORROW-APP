@@ -29,9 +29,35 @@ const updateLoanControl = async (req, res) => {
 
   results = await queryData(`SELECT * FROM loans WHERE lender = '${lender}' OR borrower = '${lender}';`);
   const loans = results.rows;
+  
+  let updatedBorrower;
+  let updatedLender;
+
+
+  if (status == 'paid'){
+    results = await queryData(`SELECT * FROM users WHERE username = '${borrower}';`);
+    const borrowerUser = results.rows[0];
+    let totalBorrowing = (borrowerUser.total_borrowing += 1);
+    let totalScore = (borrowerUser.total_score += transaction_rating);
+    let reputation = (totalScore / totalBorrowing);
+
+    results = await queryData(`UPDATE users SET total_borrowing = ${totalBorrowing}, total_score = ${totalScore}, reputation = ${reputation} 
+      WHERE username = '${borrower}' RETURNING *;`);
+    updatedBorrower = results.rows[0];
+
+    results = await queryData(`SELECT * FROM users WHERE username = '${lender}';`);
+    const lenderUser = results.rows[0];
+    let totalLending = (lenderUser.total_lending += 1);
+
+    results = await queryData(`UPDATE users SET total_lending = ${totalLending} WHERE username = '${lender}' RETURNING *;`);
+    updatedLender = results.rows[0];
+  }
+
 
   return res.status(200).json({
     updatedLoan: updatedLoan,
+    updatedBorrower: updatedBorrower || [],
+    updatedLender: updatedLender || [],
     loans: loans,
   });
 };

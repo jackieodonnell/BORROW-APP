@@ -77,13 +77,13 @@ Content-Type: application/json
   "loan_id": 64,
   "lender": "fromRefactorSrc1",
   "borrower": "yeyoteef",
-  "status": "approved",
+  "status": "paid",
   "creation_date": "2022-11-18T04:00:00.000Z",
   "due_date": "2022-11-30T04:00:00.000Z",
   "amount": "1000000.00",
-  "description": "jackie UPDATING LOAN TEST-- status APPROVED",
+  "description": "jackie UPDATING LOAN TEST-- status PAID",
   "payment_date": "2022-11-30T04:00:00.000Z",
-  "transaction_rating": 0
+  "transaction_rating": 1
 }
 
 ### 
