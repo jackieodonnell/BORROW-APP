@@ -25,7 +25,7 @@ const registerControl = (req, res) => {
 
       const hash = bcrypt.hashSync(password, 10);
       pool.query(
-        `INSERT INTO users (username, password, email) VALUES ('${username}', '${hash}', '${email}') RETURNING * ;`,
+        `INSERT INTO users (username, password, email, reputation, total_borrowing, total_lending, total_score) VALUES ('${username}', '${hash}', '${email}', 0, 0, 0, 0) RETURNING * ;`,
         (error, results) => {
           if (error)
             return res

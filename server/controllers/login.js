@@ -38,6 +38,7 @@ const loginControl = async (req, res) => {
       reputation: user.reputation,
       token,
       loans: loans || [],
+      userObject: user,
     });
   });
 };

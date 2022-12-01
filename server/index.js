@@ -22,6 +22,7 @@ const searchRoute = require("./routes/search");
 const createLoanRoute = require("./routes/create_loan");
 const updateLoanRoute = require("./routes/update_loan");
 const refetchRoute = require("./routes/refetch");
+const adminRoute = require("./routes/admin");
 
 // PERSONAL MIDDLEWARES
 app.use("/", validate);
@@ -31,6 +32,8 @@ app.use("/", searchRoute);
 app.use("/", createLoanRoute);
 app.use("/", updateLoanRoute);
 app.use("/", refetchRoute);
+app.use("/", adminRoute);
+
 // DEV ROUTE
 
 // UNIVERSAL ROUTE
