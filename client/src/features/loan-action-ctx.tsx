@@ -47,11 +47,23 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       if (reqObj) {
         reqObj.status = "approved";
       }
-    } else {
+      // } else {
+      //   if (reqObj) {
+      //     reqObj.status = "denied";
+      //   }
+      // }
+      // TEST
+    } else if (which === "denied") {
       if (reqObj) {
         reqObj.status = "denied";
       }
+    } else if (which === "paid") {
+      if (reqObj) {
+        reqObj.status = "paid";
+        reqObj.payment_date = new Date().toISOString();
+      }
     }
+    // TEST END
 
     await axios
       .put(`/api/v1/loan`, reqObj)

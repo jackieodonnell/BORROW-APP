@@ -19,6 +19,25 @@ html {
   color: white;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+
+  -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+
+  -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: none;
+}
+
 @font-face {
   font-family: "Arista2.0";
   src: url("./assets/fonts/arista-2.0/Arista2.0.ttf");
@@ -35,6 +54,12 @@ html {
 @font-face {
   font-family: "Raleway-light";
   src: url("./assets/fonts/raleway/Raleway-ExtraLight.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway-heavy";
+  src: url("./assets/fonts/raleway/Raleway-Heavy.ttf");
   font-style: normal;
 }
 
