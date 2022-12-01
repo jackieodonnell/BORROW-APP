@@ -15,13 +15,14 @@
 .p,
 .pUser {
   font-family: "raleway";
-  font-size: 2em;
+  font-size: 1.8em;
   color: white;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .dataSpan,
 .pUser {
   font-family: "raleway-heavy";
@@ -48,6 +49,11 @@
   cursor: pointer;
   top: 0.5em;
 }
+
+.span1 {
+  right: 2.5em;
+}
+
 .span2 {
   right: 1em;
 }
@@ -72,5 +78,8 @@
   }
   .dataSpan {
     text-align: center;
+  }
+  .span1 {
+    right: unset;
   }
 }
