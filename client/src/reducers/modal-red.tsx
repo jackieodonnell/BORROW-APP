@@ -6,6 +6,7 @@ export type ModalActionType =
   | { type: "DASHBOARD" }
   | { type: "ACCOUNT" }
   | { type: "SEARCH" }
+  | { type: "PAYCONFIRM" }
   | { type: "CONFIRMATION" };
 
 export type ModalStateType = {
@@ -16,6 +17,7 @@ export type ModalStateType = {
   showAccount: boolean;
   showSearch: boolean;
   showConfirmation: boolean;
+  showPayConfirm: boolean;
 };
 
 export const ModalState = {
@@ -26,6 +28,7 @@ export const ModalState = {
   showAccount: false,
   showSearch: false,
   showConfirmation: false,
+  showPayConfirm: false,
 };
 
 const ModalRed = (state: ModalStateType, action: ModalActionType) => {
@@ -66,6 +69,14 @@ const ModalRed = (state: ModalStateType, action: ModalActionType) => {
         ...ModalState,
         showModal: true,
         showSearch: true,
+      };
+    }
+
+    case "PAYCONFIRM": {
+      return {
+        ...ModalState,
+        showModal: true,
+        showPayConfirm: true,
       };
     }
 
