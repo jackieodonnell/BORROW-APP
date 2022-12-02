@@ -10,7 +10,7 @@ const PayConfirm: React.FC = () => {
   const [cancelHover, setCancelHover] = useState(false);
   const uiMgr = useContext(UiCtx);
   const loanActMgr = useContext(LoanActionCtx);
-
+  const [transRate, setTransRate] = useState(5);
   return (
     <section className={classes.section}>
       <h3 className={classes.h3}>
@@ -22,6 +22,19 @@ const PayConfirm: React.FC = () => {
           {loanActMgr.currentTransaction.borrower}
         </span>
       </p>
+      <input
+        className={classes.rate}
+        value={transRate}
+        onChange={(e) => {
+          if (Number(e.target.value) > 5) {
+            return;
+          }
+          setTransRate(parseInt(e.target.value, 10));
+        }}
+        type={"number"}
+        min={1}
+        max={5}
+      />
       <form className={classes.form}>
         <button type="submit" className={classes.submit}>
           <img
@@ -29,9 +42,11 @@ const PayConfirm: React.FC = () => {
             src={submitHover ? submitActive : submitInactive}
             onMouseOver={() => setSubmitHover(true)}
             onMouseLeave={() => setSubmitHover(false)}
-            onClick={() =>
-              loanActMgr.onConfirmLoan(loanActMgr.currentTransaction, "paid")
-            }
+            onClick={() => {
+              let reqObj = loanActMgr.currentTransaction;
+              reqObj.transaction_rating = transRate;
+              loanActMgr.onConfirmLoan(reqObj, "paid");
+            }}
           />
         </button>
         <button type="submit" className={classes.submit}>

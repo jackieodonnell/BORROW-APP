@@ -41,6 +41,9 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
     >
       <p className={classes.pUser}>
         {obj.borrower === currentUser ? obj.lender : obj.borrower}
+        {/* TEST */}
+        {btnActive.paidBack && ` ${obj.transaction_rating}`}
+        {/* TEST END */}
       </p>
       <p className={classes.p}>
         <span>Amount:</span>{" "}
