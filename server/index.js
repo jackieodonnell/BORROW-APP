@@ -7,6 +7,7 @@ const app = express();
 const { pool } = require("./database/queries");
 const jwt = require("jsonwebtoken");
 const { getLoansByUsername, getUserByUsername } = require("./utils/db");
+const { adminControl } = require("./controllers/admin");
 
 // MIDDLEWARES
 app.use(morgan("dev"));
@@ -31,10 +32,12 @@ app.use("/", searchRoute);
 app.use("/", createLoanRoute);
 app.use("/", updateLoanRoute);
 app.use("/", refetchRoute);
-// DEV ROUTE
+// app.use("/", adminRoute);
+
+// ADMIN ROUTE
+app.get("/api/v1/data/admin", adminControl)
 
 // UNIVERSAL ROUTE
-
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });

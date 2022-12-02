@@ -36,9 +36,9 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
         {btnActive.paidBack ? "Paid:" : null}
 
         <span className={classes.dataSpan}>
-          {btnActive.loans
-            ? `${obj.due_date.slice(2, 10)}`
-            : `${obj.creation_date.slice(2, 10)}`}
+          {btnActive.loans && `${obj.due_date.slice(2, 10)}`}
+          {btnActive.pending && `${obj.creation_date.slice(2, 10)}`}
+          {btnActive.paidBack && `${obj.payment_date.slice(2, 10)}`}
         </span>
       </p>
       <p className={classes.p}>

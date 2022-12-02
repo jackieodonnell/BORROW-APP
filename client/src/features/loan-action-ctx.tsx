@@ -89,10 +89,14 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .put(`/api/v1/loan`, reqObj)
       .then((serverRes) => {
-        setLoansToFilter((prev) => {
-          return prev.filter((objToRemove) => {
-            return objToRemove.loan_id !== reqObj?.loan_id;
-          });
+        console.log(serverRes.data);
+        // setLoansToFilter((prev) => {
+        //   return prev.filter((objToRemove) => {
+        //     return objToRemove.loan_id !== reqObj?.loan_id;
+        //   });
+        // });
+        userMgr.setCurrentUser((prev) => {
+          return { ...prev, loans: serverRes.data.loans };
         });
         uiMgr.dispatch({ type: "DASHBOARD" });
       })

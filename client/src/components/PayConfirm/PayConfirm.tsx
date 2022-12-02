@@ -1,5 +1,4 @@
 import classes from "./PayConfirm.module.css";
-import { Loans } from "../../models/user";
 import { useState, useContext } from "react";
 import { UiCtx } from "../../features/ui-ctx";
 import submitActive from "../../assets/images/submit-hover.png";

@@ -23,15 +23,21 @@
 - [x] Logout Logic and implementation
 - [x] Spinner
 - [ ] Explore Submit being an img element to trigger form submission on hit ENTER
-- [ ] Refactor Dashboard List items
-- [ ] Add logic to what happens when you click X on a list item
-- [ ] Consider filter (borrowed, lent, all)
+- [x] Refactor Dashboard List items
+- [x] Add logic to what happens when you click X on a list item
+- [x] Consider filter (borrowed, lent, all)
 - [ ] Explore best order to display items
-- [ ] Change Settings Icon to Logout Icon
+- [x] Change Settings Icon to Logout Icon
 - [x] Refactor Search by considering:
 - [x] Removing Search Icon
 - [x] Adding Borrow/Lend Icons to Nav
 - [x] Render form and its feedbacks
 - [x] Not limited to but includes: user not found
 - [x] Implement the concept of Reputation somewhere along that form's feedback
-- [ ] Differentiate with Style the possible different transactions' statuses.
+- [ ] Fix pay-date displayed
+- [ ] Rating is performed by user action
+- [ ] Get cancel button img to replace in confirmation windows
+- [ ] Implement confirmation window for pending lend requests: Shows borrower's reputation
+- [ ] Get confirm button img
+- [ ] Allow lender to see given reputation score on paid hx
+- [ ] Substring input's on loanItem
