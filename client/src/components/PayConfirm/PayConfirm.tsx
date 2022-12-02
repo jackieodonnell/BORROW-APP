@@ -1,8 +1,8 @@
 import classes from "./PayConfirm.module.css";
-import { useState, useContext } from "react";
-import { UiCtx } from "../../features/ui-ctx";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
+import { useState, useContext } from "react";
+import { UiCtx } from "../../features/ui-ctx";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
 
 const PayConfirm: React.FC = () => {

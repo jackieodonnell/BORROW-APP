@@ -1,8 +1,9 @@
 import classes from "./LendConfirm.module.css";
-import { useContext, useState } from "react";
-import { LoanActionCtx } from "../../features/loan-action-ctx";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
+import { useContext, useState } from "react";
+import { LoanActionCtx } from "../../features/loan-action-ctx";
+
 const LendConfirm: React.FC = () => {
   const [submitHover, setSubmitHover] = useState(false);
   const [cancelHover, setCancelHover] = useState(false);

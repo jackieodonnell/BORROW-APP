@@ -1,9 +1,9 @@
 import classes from "./LoanItem.module.css";
 import { useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
-import { Loans } from "../../models/user";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
 import { UiCtx } from "../../features/ui-ctx";
+import { Loans } from "../../models/user";
 
 interface Props {
   obj: Loans;
@@ -41,9 +41,9 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
     >
       <p className={classes.pUser}>
         {obj.borrower === currentUser ? obj.lender : obj.borrower}
-        {/* TEST */}
-        {btnActive.paidBack && ` ${obj.transaction_rating}`}
-        {/* TEST END */}
+        {btnActive.paidBack &&
+          obj.lender === currentUser &&
+          ` ${obj.transaction_rating}`}
       </p>
       <p className={classes.p}>
         <span>Amount:</span>{" "}

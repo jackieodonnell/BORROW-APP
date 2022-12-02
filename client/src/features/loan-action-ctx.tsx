@@ -1,8 +1,21 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
-import { Loans } from "../models/user";
 import { UiCtx } from "./ui-ctx";
 import { UserCtx } from "./user-ctx";
+import axios from "axios";
+import { Loans } from "../models/user";
+
+const transactionTemplate = {
+  loan_id: 0,
+  lender: "",
+  borrower: "",
+  status: "",
+  creation_date: "",
+  due_date: "",
+  amount: "",
+  description: "",
+  payment_date: "",
+  transaction_rating: 0,
+};
 
 type CtxType = {
   loansToFilter: Loans[];
@@ -16,34 +29,10 @@ type CtxType = {
 };
 
 export const LoanActionCtx = createContext<CtxType>({
-  loansToFilter: [
-    {
-      loan_id: 0,
-      lender: "",
-      borrower: "",
-      status: "",
-      creation_date: "",
-      due_date: "",
-      amount: "",
-      description: "",
-      payment_date: "",
-      transaction_rating: 0,
-    },
-  ],
+  loansToFilter: [transactionTemplate],
   setLoansToFilter: () => {},
   onConfirmLoan: () => {},
-  currentTransaction: {
-    loan_id: 0,
-    lender: "",
-    borrower: "",
-    status: "",
-    creation_date: "",
-    due_date: "",
-    amount: "",
-    description: "",
-    payment_date: "",
-    transaction_rating: 0,
-  },
+  currentTransaction: transactionTemplate,
   setCurrentTransaction: () => {},
   borrowReputation: 0,
   setBorrowReputation: () => {},
@@ -57,18 +46,8 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
   const uiMgr = useContext(UiCtx);
   const [borrowReputation, setBorrowReputation] = useState(0);
   const [loansToFilter, setLoansToFilter] = useState(userMgr.currentUser.loans);
-  const [currentTransaction, setCurrentTransaction] = useState<Loans>({
-    loan_id: 0,
-    lender: "",
-    borrower: "",
-    status: "",
-    creation_date: "",
-    due_date: "",
-    amount: "",
-    description: "",
-    payment_date: "",
-    transaction_rating: 0,
-  });
+  const [currentTransaction, setCurrentTransaction] =
+    useState<Loans>(transactionTemplate);
 
   const onConfirmLoan = async (obj: Loans, which: string) => {
     uiMgr.dispatch({ type: "LOADING" });
@@ -95,7 +74,9 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       .put(`/api/v1/loan`, reqObj)
       .then((serverRes) => {
         userMgr.setCurrentUser((prev) => {
-          return { ...prev, loans: serverRes.data.loans };
+          let reversed = serverRes.data.loans;
+          reversed.reverse();
+          return { ...prev, loans: reversed };
         });
         uiMgr.dispatch({ type: "DASHBOARD" });
       })

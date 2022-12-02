@@ -1,7 +1,7 @@
 import classes from "./Confirmation.module.css";
-import { useState, useContext } from "react";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
+import { useState, useContext } from "react";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
 import { UserCtx } from "../../features/user-ctx";
 import { UiCtx } from "../../features/ui-ctx";
@@ -32,7 +32,7 @@ const Confirmation: React.FC = () => {
             src={submitHover ? submitActive : submitInactive}
             onMouseOver={() => setSubmitHover(true)}
             onMouseLeave={() => setSubmitHover(false)}
-            onClick={newLoanMgr.confirmApi}
+            onClick={newLoanMgr.createLoan}
           />
         </button>
         <button type="submit" className={classes.submit}>
