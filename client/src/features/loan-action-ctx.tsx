@@ -74,12 +74,6 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       if (reqObj) {
         reqObj.status = "approved";
       }
-      // } else {
-      //   if (reqObj) {
-      //     reqObj.status = "denied";
-      //   }
-      // }
-      // TEST
     } else if (which === "denied") {
       if (reqObj) {
         reqObj.status = "denied";
