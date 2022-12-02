@@ -43,6 +43,7 @@ const Search: React.FC = () => {
           placeholder="for"
           required
           name="description"
+          maxLength={20}
           value={newLoanMgr.loanData.description}
           onChange={newLoanMgr.onLoanDataChange}
         />

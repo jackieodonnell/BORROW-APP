@@ -16,7 +16,7 @@ const createLoanControl = (req, res) => {
   pool.query(
     `INSERT INTO loans (loan_id, lender, borrower, status, creation_date, due_date, amount, description, payment_date, transaction_rating)
    VALUES (DEFAULT, '${lender}', '${borrower}', '${status}', '${creation_date}', '${due_date}', ${amount},
-   '${description}', '${payment_date}', ${transaction_rating}) RETURNING *;`,
+   '${description}', '${payment_date}', 0) RETURNING *;`,
     (error, results) => {
       if (error)
         return res.status(500).json({ message: "Oops, something went wrong" });

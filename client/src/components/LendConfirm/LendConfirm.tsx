@@ -1,26 +1,23 @@
-import classes from "./PayConfirm.module.css";
-import { useState, useContext } from "react";
-import { UiCtx } from "../../features/ui-ctx";
+import classes from "./LendConfirm.module.css";
+import { useContext, useState } from "react";
+import { LoanActionCtx } from "../../features/loan-action-ctx";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
-import { LoanActionCtx } from "../../features/loan-action-ctx";
-
-const PayConfirm: React.FC = () => {
+const LendConfirm: React.FC = () => {
   const [submitHover, setSubmitHover] = useState(false);
   const [cancelHover, setCancelHover] = useState(false);
-  const uiMgr = useContext(UiCtx);
   const loanActMgr = useContext(LoanActionCtx);
 
   return (
     <section className={classes.section}>
       <h3 className={classes.h3}>
-        Confirm you got paid {loanActMgr.currentTransaction.amount}
+        Lend ${loanActMgr.currentTransaction.amount} to
       </h3>
       <p className={classes.p}>
-        and rate{" "}
         <span className={classes.span}>
           {loanActMgr.currentTransaction.borrower}
-        </span>
+        </span>{" "}
+        who has a reputation of {loanActMgr.borrowReputation}?
       </p>
       <form className={classes.form}>
         <button type="submit" className={classes.submit}>
@@ -30,7 +27,10 @@ const PayConfirm: React.FC = () => {
             onMouseOver={() => setSubmitHover(true)}
             onMouseLeave={() => setSubmitHover(false)}
             onClick={() =>
-              loanActMgr.onConfirmLoan(loanActMgr.currentTransaction, "paid")
+              loanActMgr.onConfirmLoan(
+                loanActMgr.currentTransaction,
+                "approved"
+              )
             }
           />
         </button>
@@ -40,7 +40,9 @@ const PayConfirm: React.FC = () => {
             src={cancelHover ? submitActive : submitInactive}
             onMouseOver={() => setCancelHover(true)}
             onMouseLeave={() => setCancelHover(false)}
-            onClick={() => uiMgr.dispatch({ type: "DASHBOARD" })}
+            onClick={() => {
+              loanActMgr.onConfirmLoan(loanActMgr.currentTransaction, "denied");
+            }}
           />
         </button>
       </form>
@@ -48,4 +50,4 @@ const PayConfirm: React.FC = () => {
   );
 };
 
-export default PayConfirm;
+export default LendConfirm;
