@@ -36,10 +36,10 @@
 - [x] Substring input's on loanItem
 - [x] Implement confirmation window for pending lend requests: Shows borrower's reputation
 - [x] Cursor on hover of list Item's that trigger actions
-- [x] Remove Icon to mark paid, and click on element instead
-- [ ] Allow lender to see given reputation score on paid hx
+- [x] Remove Icon to mark paid, and click on element instead to match flow of pending
+- [x] Allow lender to see given reputation score on paid hx
+- [x] Rating is performed by user action
 - [ ] Explore best order to display items
 - [ ] Get confirm button img
 - [ ] Explore Submit being an img element to trigger form submission on hit ENTER
 - [ ] Get cancel button img to replace in confirmation windows
-- [ ] Rating is performed by user action
