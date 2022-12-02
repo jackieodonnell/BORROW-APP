@@ -10,6 +10,9 @@ type CtxType = {
   onConfirmLoan: (obj: Loans, which: string) => void;
   currentTransaction: Loans;
   setCurrentTransaction: React.Dispatch<React.SetStateAction<Loans>>;
+  borrowReputation: number;
+  setBorrowReputation: React.Dispatch<React.SetStateAction<number>>;
+  searchBorrower: () => void;
 };
 
 export const LoanActionCtx = createContext<CtxType>({
@@ -42,6 +45,9 @@ export const LoanActionCtx = createContext<CtxType>({
     transaction_rating: 0,
   },
   setCurrentTransaction: () => {},
+  borrowReputation: 0,
+  setBorrowReputation: () => {},
+  searchBorrower: () => {},
 });
 
 const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -49,6 +55,7 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const userMgr = useContext(UserCtx);
   const uiMgr = useContext(UiCtx);
+  const [borrowReputation, setBorrowReputation] = useState(0);
   const [loansToFilter, setLoansToFilter] = useState(userMgr.currentUser.loans);
   const [currentTransaction, setCurrentTransaction] = useState<Loans>({
     loan_id: 0,
@@ -62,7 +69,6 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
     payment_date: "",
     transaction_rating: 0,
   });
-  console.log(currentTransaction);
 
   const onConfirmLoan = async (obj: Loans, which: string) => {
     uiMgr.dispatch({ type: "LOADING" });
@@ -84,17 +90,10 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
         reqObj.payment_date = new Date().toISOString();
       }
     }
-    // TEST END
 
     await axios
       .put(`/api/v1/loan`, reqObj)
       .then((serverRes) => {
-        console.log(serverRes.data);
-        // setLoansToFilter((prev) => {
-        //   return prev.filter((objToRemove) => {
-        //     return objToRemove.loan_id !== reqObj?.loan_id;
-        //   });
-        // });
         userMgr.setCurrentUser((prev) => {
           return { ...prev, loans: serverRes.data.loans };
         });
@@ -106,6 +105,21 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   };
 
+  const searchBorrower = async () => {
+    uiMgr.dispatch({ type: "LOADING" });
+    await axios
+      .get(`/api/v1/search/${currentTransaction.borrower}`)
+      .then((serverRes) => {
+        uiMgr.dispatch({ type: "LENDCONFIRM" });
+        if (serverRes.data.reputation === null) return setBorrowReputation(0);
+        setBorrowReputation(serverRes.data.reputation);
+      })
+      .catch((err) => {
+        uiMgr.dispatch({ type: "DASHBOARD" });
+        console.log(err);
+      });
+  };
+
   return (
     <LoanActionCtx.Provider
       value={{
@@ -114,6 +128,9 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
         onConfirmLoan,
         currentTransaction,
         setCurrentTransaction,
+        borrowReputation,
+        setBorrowReputation,
+        searchBorrower,
       }}
     >
       {children}

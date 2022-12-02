@@ -1,5 +1,5 @@
 import classes from "./LoanItem.module.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
 import { Loans } from "../../models/user";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
@@ -22,7 +22,23 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
   let currentUser = userMgr.currentUser.user;
 
   return (
-    <li className={classes.li}>
+    <li
+      onClick={(e) => {
+        e.preventDefault();
+        if (obj.borrower !== userMgr.currentUser.user && btnActive.pending) {
+          loanActMgr.setCurrentTransaction(obj);
+          loanActMgr.searchBorrower();
+        } else if (btnActive.loans && currentUser === obj.lender) {
+          uiMgr.dispatch({ type: "PAYCONFIRM" });
+          loanActMgr.setCurrentTransaction(obj);
+        }
+      }}
+      className={
+        (btnActive.pending || btnActive.loans) && currentUser === obj.lender
+          ? classes.liCursor
+          : classes.li
+      }
+    >
       <p className={classes.pUser}>
         {obj.borrower === currentUser ? obj.lender : obj.borrower}
       </p>
@@ -45,36 +61,6 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
         <span>For:</span>
         <span className={classes.dataSpan}>{obj.description}</span>
       </p>
-      {btnActive.pending && currentUser === obj.lender && (
-        <p className={classes.x}>
-          <span
-            className={classes.span1}
-            onClick={() => loanActMgr.onConfirmLoan(obj, "denied")}
-          >
-            X
-          </span>{" "}
-          <span
-            className={classes.span2}
-            onClick={() => loanActMgr.onConfirmLoan(obj, "approved")}
-          >
-            ✓
-          </span>
-        </p>
-      )}
-      {btnActive.loans && currentUser === obj.lender && (
-        <p className={classes.x}>
-          <span
-            className={classes.span2}
-            // onClick={() => loanActMgr.onConfirmLoan(obj, "paid")}
-            onClick={() => {
-              uiMgr.dispatch({ type: "PAYCONFIRM" });
-              loanActMgr.setCurrentTransaction(obj);
-            }}
-          >
-            ✓
-          </span>
-        </p>
-      )}
     </li>
   );
 };

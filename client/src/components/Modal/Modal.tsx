@@ -8,6 +8,7 @@ import { UiCtx } from "../../features/ui-ctx";
 import Confirmation from "../Confirmation/Confirmation";
 import Spinner from "../Spinner/Spinner";
 import PayConfirm from "../PayConfirm/PayConfirm";
+import LendConfirm from "../LendConfirm/LendConfirm";
 const Modal: React.FC = () => {
   const uiMgr = useContext(UiCtx);
 
@@ -19,6 +20,7 @@ const Modal: React.FC = () => {
       {uiMgr.state.showSearch && <Search />}
       {uiMgr.state.showConfirmation && <Confirmation />}
       {uiMgr.state.showPayConfirm && <PayConfirm />}
+      {uiMgr.state.showLendConfirm && <LendConfirm />}
       {uiMgr.state.loading && <Spinner />}
     </Portal>
   );

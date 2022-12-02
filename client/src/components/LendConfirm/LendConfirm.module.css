@@ -1,0 +1,63 @@
+.section {
+  /* background-color: #9ab85f; */
+  background-image: linear-gradient(
+    to bottom left,
+    #9ab85f,
+    #9ab85f,
+    #5f9ab8,
+    #b85f9a
+  );
+  height: 100vh;
+  width: 100%;
+  padding: 5vh 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5vh;
+}
+.h3 {
+  font-family: "Arista2.0";
+  color: white;
+  font-size: 5em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.p {
+  font-family: "raleway";
+  font-size: 2em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.894);
+}
+
+.span {
+  font-family: "raleway-heavy";
+}
+
+.form {
+  margin-top: 5vh;
+  padding: 5vh 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  flex-direction: column;
+}
+.input {
+  height: 5vh;
+  width: 15em;
+  text-align: center;
+  font-family: "raleway";
+  border: transparent;
+  outline: none;
+}
+.submit {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+.submitImg {
+  width: 12.5em;
+}
