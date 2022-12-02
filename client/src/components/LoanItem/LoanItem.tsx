@@ -1,8 +1,9 @@
 import classes from "./LoanItem.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserCtx } from "../../features/user-ctx";
 import { Loans } from "../../models/user";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
+import { UiCtx } from "../../features/ui-ctx";
 
 interface Props {
   obj: Loans;
@@ -16,6 +17,8 @@ interface Props {
 const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
   const userMgr = useContext(UserCtx);
   const loanActMgr = useContext(LoanActionCtx);
+  const uiMgr = useContext(UiCtx);
+
   let currentUser = userMgr.currentUser.user;
 
   return (
@@ -62,7 +65,11 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
         <p className={classes.x}>
           <span
             className={classes.span2}
-            onClick={() => loanActMgr.onConfirmLoan(obj, "paid")}
+            // onClick={() => loanActMgr.onConfirmLoan(obj, "paid")}
+            onClick={() => {
+              uiMgr.dispatch({ type: "PAYCONFIRM" });
+              loanActMgr.setCurrentTransaction(obj);
+            }}
           >
             ✓
           </span>

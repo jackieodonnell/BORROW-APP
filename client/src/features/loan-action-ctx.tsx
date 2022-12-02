@@ -8,6 +8,8 @@ type CtxType = {
   loansToFilter: Loans[];
   setLoansToFilter: React.Dispatch<React.SetStateAction<Loans[]>>;
   onConfirmLoan: (obj: Loans, which: string) => void;
+  currentTransaction: Loans;
+  setCurrentTransaction: React.Dispatch<React.SetStateAction<Loans>>;
 };
 
 export const LoanActionCtx = createContext<CtxType>({
@@ -27,6 +29,19 @@ export const LoanActionCtx = createContext<CtxType>({
   ],
   setLoansToFilter: () => {},
   onConfirmLoan: () => {},
+  currentTransaction: {
+    loan_id: 0,
+    lender: "",
+    borrower: "",
+    status: "",
+    creation_date: "",
+    due_date: "",
+    amount: "",
+    description: "",
+    payment_date: "",
+    transaction_rating: 0,
+  },
+  setCurrentTransaction: () => {},
 });
 
 const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -35,10 +50,22 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
   const userMgr = useContext(UserCtx);
   const uiMgr = useContext(UiCtx);
   const [loansToFilter, setLoansToFilter] = useState(userMgr.currentUser.loans);
+  const [currentTransaction, setCurrentTransaction] = useState<Loans>({
+    loan_id: 0,
+    lender: "",
+    borrower: "",
+    status: "",
+    creation_date: "",
+    due_date: "",
+    amount: "",
+    description: "",
+    payment_date: "",
+    transaction_rating: 0,
+  });
+  console.log(currentTransaction);
 
   const onConfirmLoan = async (obj: Loans, which: string) => {
     uiMgr.dispatch({ type: "LOADING" });
-
     const reqObj = userMgr.currentUser.loans.find((objStored) => {
       return objStored.loan_id === obj.loan_id;
     });
@@ -87,6 +114,8 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
         loansToFilter,
         setLoansToFilter,
         onConfirmLoan,
+        currentTransaction,
+        setCurrentTransaction,
       }}
     >
       {children}
