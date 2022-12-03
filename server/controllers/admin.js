@@ -30,3 +30,4 @@ const adminControl = async (req, res) => {
 };
 
 module.exports = { adminControl };
+

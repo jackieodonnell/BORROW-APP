@@ -31,14 +31,6 @@ const createLoanControl = async (req, res) => {
 
   const createdLoan = results.rows[0];
 
-  // pool.query(
-  //   `INSERT INTO loans (loan_id, lender, borrower, status, creation_date, due_date, amount, description, payment_date, transaction_rating)
-  //  VALUES (DEFAULT, '${lender}', '${borrower}', '${status}', '${creation_date}', '${due_date}', ${amount},
-  //  '${description}', '${payment_date}', 0) RETURNING *;`,
-  //   (error, results) => {
-  //     if (error)
-  //       return res.status(500).json({ message: "Oops, something went wrong" });
-
   results = await queryLoans(
     `SELECT * FROM loans WHERE lender = '${borrower}' OR borrower = '${borrower}';`
   );

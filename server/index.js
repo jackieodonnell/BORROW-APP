@@ -35,6 +35,7 @@ app.use("/", refetchRoute);
 // app.use("/", adminRoute);
 
 // ADMIN ROUTE
+
 app.get("/api/v1/data/admin", adminControl);
 
 // UNIVERSAL ROUTE

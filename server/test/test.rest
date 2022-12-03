@@ -39,13 +39,13 @@ POST http://localhost:3002/api/v1/loan HTTP/1.1
 Content-Type: application/json
 
 {
-  "lender": "isticanja1t",
+  "lender": "fromRefactorSrc1",
   "borrower": "yeyoteef",
   "status": "pending",
   "creation_date": "2022-11-18T04:00:00.000Z",
   "due_date": "2022-11-30T04:00:00.000Z",
   "amount": "10.00",
-  "description": "TEST CREATING NEW LOAN",
+  "description": "jackie TEST CREATING NEW LOAN",
   "payment_date": "2022-11-30",
   "transaction_rating": 0
 }
@@ -58,8 +58,8 @@ PUT http://localhost:3002/api/v1/loan HTTP/1.1
 Content-Type: application/json
 
 {
-  "loan_id": 23,
-  "lender": "isticanja1t",
+  "loan_id": 64,
+  "lender": "fromRefactorSrc1",
   "borrower": "yeyoteef",
   "status": "paid",
   "creation_date": "2022-11-18T04:00:00.000Z",
@@ -79,16 +79,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVm
 
 ###
 
-### 
 
 # REFETCH USER
 
 GET http://localhost:3002/api/v1/yeyoteef/validate
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVmIiwiaWF0IjoxNjcwMDg5OTAwLCJleHAiOjE2NzAwOTM1MDB9.RHn031tVD51J7Zd52ZpYyoHt9sMi2tVjeOyJ_s44Aok
-
-###
-
-   
 
 ###
 
@@ -106,4 +101,8 @@ Content-Type: application/json
 }
 
 
+# FETCH ADMIN DASHBOARD DATA
+GET http://localhost:3002/api/v1/data/admin HTTP/1.1
+
+###
 
