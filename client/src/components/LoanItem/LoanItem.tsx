@@ -19,30 +19,30 @@ const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
   const loanActMgr = useContext(LoanActionCtx);
   const uiMgr = useContext(UiCtx);
 
-  let currentUser = userMgr.currentUser.user;
-
   return (
     <li
       onClick={(e) => {
         e.preventDefault();
+
         if (obj.borrower !== userMgr.currentUser.user && btnActive.pending) {
           loanActMgr.setCurrentTransaction(obj);
-          loanActMgr.searchBorrower();
-        } else if (btnActive.loans && currentUser === obj.lender) {
+          loanActMgr.searchBorrower(obj);
+        } else if (btnActive.loans && userMgr.currentUser.user === obj.lender) {
           uiMgr.dispatch({ type: "PAYCONFIRM" });
           loanActMgr.setCurrentTransaction(obj);
         }
       }}
       className={
-        (btnActive.pending || btnActive.loans) && currentUser === obj.lender
+        (btnActive.pending || btnActive.loans) &&
+        userMgr.currentUser.user === obj.lender
           ? classes.liCursor
           : classes.li
       }
     >
       <p className={classes.pUser}>
-        {obj.borrower === currentUser ? obj.lender : obj.borrower}
+        {obj.borrower === userMgr.currentUser.user ? obj.lender : obj.borrower}
         {btnActive.paidBack &&
-          obj.lender === currentUser &&
+          obj.lender === userMgr.currentUser.user &&
           ` ${obj.transaction_rating}`}
       </p>
       <p className={classes.p}>

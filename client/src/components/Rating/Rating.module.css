@@ -1,0 +1,16 @@
+.rate,
+.rateSelection {
+  border: transparent;
+  /* border-radius: 3px; */
+  text-align: center;
+  outline: none;
+  width: 2.5em;
+  font-size: 2em;
+  color: white;
+  height: 2.5em;
+  background-color: #b85f9a96;
+  cursor: pointer;
+}
+.rateSelection {
+  background-color: #5f9ab8;
+}

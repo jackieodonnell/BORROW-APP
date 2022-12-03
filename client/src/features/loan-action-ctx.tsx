@@ -25,7 +25,7 @@ type CtxType = {
   setCurrentTransaction: React.Dispatch<React.SetStateAction<Loans>>;
   borrowReputation: number;
   setBorrowReputation: React.Dispatch<React.SetStateAction<number>>;
-  searchBorrower: () => void;
+  searchBorrower: (obj: Loans) => void;
 };
 
 export const LoanActionCtx = createContext<CtxType>({
@@ -36,7 +36,7 @@ export const LoanActionCtx = createContext<CtxType>({
   setCurrentTransaction: () => {},
   borrowReputation: 0,
   setBorrowReputation: () => {},
-  searchBorrower: () => {},
+  searchBorrower: (obj: Loans) => {},
 });
 
 const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -86,10 +86,11 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   };
 
-  const searchBorrower = async () => {
+  const searchBorrower = async (obj: Loans) => {
     uiMgr.dispatch({ type: "LOADING" });
+
     await axios
-      .get(`/api/v1/search/${currentTransaction.borrower}`)
+      .get(`/api/v1/search/${obj.borrower}`)
       .then((serverRes) => {
         uiMgr.dispatch({ type: "LENDCONFIRM" });
         if (serverRes.data.reputation === null) return setBorrowReputation(0);
