@@ -5,7 +5,7 @@ import App from "./App";
 import AuthProvider from "./features/auth-ctx";
 import UiProvider from "./features/ui-ctx";
 import UserProvider from "./features/user-ctx";
-import NewLoanProvider, { NewLoanCtx } from "./features/new-loan-ctx";
+import NewLoanProvider from "./features/new-loan-ctx";
 import LoanActionProvider from "./features/loan-action-ctx";
 
 const root = ReactDOM.createRoot(

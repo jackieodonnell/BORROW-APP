@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { createContext, useState, useContext } from "react";
 import { UiCtx } from "./ui-ctx";
-import { inputData } from "../models/auth";
 import { UserCtx } from "./user-ctx";
+import axios from "axios";
 import { storeToken, clearLocalStorage } from "../utils/token";
+import { inputData } from "../models/auth";
 
 const inputDataTemplate = {
   email: "",

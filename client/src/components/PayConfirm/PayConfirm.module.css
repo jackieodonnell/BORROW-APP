@@ -61,18 +61,3 @@
 .submitImg {
   width: 12.5em;
 }
-
-.rate {
-  border: transparent;
-  border-radius: 3px;
-  text-align: center;
-  outline: none;
-  width: 2.5em;
-  font-size: 2em;
-  color: white;
-  height: 2.5em;
-  background-color: #b85f9a96;
-}
-.rate::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}

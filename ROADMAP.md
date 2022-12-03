@@ -39,7 +39,8 @@
 - [x] Remove Icon to mark paid, and click on element instead to match flow of pending
 - [x] Allow lender to see given reputation score on paid hx
 - [x] Rating is performed by user action
+- [ ] Address all catch block errors
 - [ ] Explore best order to display items
 - [ ] Get confirm button img
-- [ ] Explore Submit being an img element to trigger form submission on hit ENTER
 - [ ] Get cancel button img to replace in confirmation windows
+- [ ] Explore Submit being an img element to trigger form submission on hit ENTER
