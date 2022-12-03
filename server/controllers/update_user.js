@@ -13,6 +13,7 @@ const updateUserControl = async (req, res) => {
   const { username, reputation, total_borrowing, total_lending, total_score } =
     req.body;
 
+
   let results = await updateUser(`UPDATE users SET reputation = ${reputation}, 
     total_borrowing = ${total_borrowing}, total_lending = ${total_lending}, total_score = ${total_score}
     WHERE username = '${username}' RETURNING *;`);
@@ -26,5 +27,6 @@ const updateUserControl = async (req, res) => {
     updatedUser: updatedUser,
   });
 };
+
 
 module.exports = { updateUserControl };

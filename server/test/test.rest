@@ -87,11 +87,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVm
 
 ###
 
-# FETCH ADMIN DASHBOARD DATA
-GET http://localhost:3002/api/v1/data/admin HTTP/1.1
-
-###
-
 # UPDATE USER? INACTIVE ROUTE/DO NOT RUN
 
 PUT http://localhost:3002/api/v1/yeyoteef/update HTTP/1.1
@@ -106,4 +101,8 @@ Content-Type: application/json
 }
 
 
+# FETCH ADMIN DASHBOARD DATA
+GET http://localhost:3002/api/v1/data/admin HTTP/1.1
+
+###
 
