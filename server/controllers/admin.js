@@ -19,7 +19,11 @@ async function getLoans() {
 const adminControl = async (req, res) => {
 
     let results = await getUsers();
+<<<<<<< HEAD
     const users = results.rows;
+=======
+     const users = results.rows;
+>>>>>>> 2636e66 (added update_loan, update_user, and admin routes)
 
     results = await getLoans();
     const loans = results.rows;
