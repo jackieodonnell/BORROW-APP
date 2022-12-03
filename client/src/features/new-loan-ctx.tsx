@@ -63,6 +63,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loanData, setLoanData] = useState<LoanRequest>(loanTemplate);
   const [serverErr, setServerErr] = useState(false);
   const [reputation, setReputation] = useState(0);
+
   const onLoanDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     e.preventDefault();

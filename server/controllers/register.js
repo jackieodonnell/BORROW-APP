@@ -41,6 +41,7 @@ const registerControl = (req, res) => {
             user: results.rows[0].username,
             reputation: results.rows[0].reputation,
             token,
+            loans: [],
           });
         }
       );
