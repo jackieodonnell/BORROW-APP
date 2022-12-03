@@ -43,3 +43,14 @@
 .submit:hover {
   background-color: #b85fb2a2;
 }
+
+.due {
+  color: white;
+  font-family: "raleway";
+  font-size: 1.7em;
+}
+.feedback {
+  color: white;
+  font-family: "raleway-heavy";
+  font-size: 1.8em;
+}

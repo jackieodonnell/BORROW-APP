@@ -41,8 +41,3 @@
 - [x] Allow lender to see given reputation score on paid hx
 - [x] Rating is performed by user action
 - [ ] Address all catch block errors
-- [ ] Explore best order to display items
-- [ ] Get confirm button img
-- [ ] Get cancel button img to replace in confirmation windows
-- [ ] Explore Submit being an img element to trigger form submission on hit ENTER
-- [ ] Nest form imgs/btns inside buttons type submit. Ensure preventDefault() but connect form.
