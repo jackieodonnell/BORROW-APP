@@ -26,7 +26,9 @@ const Search: React.FC = () => {
           }
           onChange={newLoanMgr.onLoanDataChange}
         />
-        {newLoanMgr.serverErr && <p>User not found</p>}
+        {newLoanMgr.serverErr && (
+          <p className={classes.feedback}>User not found</p>
+        )}
         <input
           className={classes.input}
           placeholder="amount"
@@ -44,7 +46,7 @@ const Search: React.FC = () => {
           value={newLoanMgr.loanData.description}
           onChange={newLoanMgr.onLoanDataChange}
         />
-        <label> Due on</label>
+        <label className={classes.due}> Due on</label>
         <input
           type="date"
           className={classes.input}
