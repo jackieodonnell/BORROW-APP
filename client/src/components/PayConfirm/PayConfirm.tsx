@@ -7,10 +7,10 @@ import { LoanActionCtx } from "../../features/loan-action-ctx";
 import Rating from "../Rating/Rating";
 
 const PayConfirm: React.FC = () => {
-  const [submitHover, setSubmitHover] = useState(false);
-  const [cancelHover, setCancelHover] = useState(false);
   const uiMgr = useContext(UiCtx);
   const loanActMgr = useContext(LoanActionCtx);
+  const [submitHover, setSubmitHover] = useState(false);
+  const [cancelHover, setCancelHover] = useState(false);
   const [transRate, setTransRate] = useState(5);
 
   return (

@@ -16,6 +16,7 @@
 - [x] Register Route
 - [x] Token Validation Route
 - [x] Refetch User Route
+- [ ] Run Test on Later created Routes
 
 # CLIENT
 
@@ -44,3 +45,4 @@
 - [ ] Get confirm button img
 - [ ] Get cancel button img to replace in confirmation windows
 - [ ] Explore Submit being an img element to trigger form submission on hit ENTER
+- [ ] Nest form imgs/btns inside buttons type submit. Ensure preventDefault() but connect form.

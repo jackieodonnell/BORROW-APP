@@ -99,7 +99,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVm
 # REFETCH USER
 
 GET http://localhost:3002/api/v1/yeyoteef/validate
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVmIiwiaWF0IjoxNjY5MjM3NDE2LCJleHAiOjE2NjkyMzgwMTZ9.xfMHNcT5CKnDWEoryJ6wYyAWtXtauT5CPHFWz5tvGQg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlleW90ZWVmIiwiaWF0IjoxNjcwMDg5OTAwLCJleHAiOjE2NzAwOTM1MDB9.RHn031tVD51J7Zd52ZpYyoHt9sMi2tVjeOyJ_s44Aok
 
 ###
 
