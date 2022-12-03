@@ -1,8 +1,9 @@
 import classes from "./LoanItem.module.css";
 import { useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
-import { Loans } from "../../models/user";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
+import { UiCtx } from "../../features/ui-ctx";
+import { Loans } from "../../models/user";
 
 interface Props {
   obj: Loans;
@@ -16,37 +17,53 @@ interface Props {
 const LoanItem: React.FC<Props> = ({ obj, btnActive }) => {
   const userMgr = useContext(UserCtx);
   const loanActMgr = useContext(LoanActionCtx);
-  let currentUser = userMgr.currentUser.user;
+  const uiMgr = useContext(UiCtx);
 
   return (
-    <li className={classes.li}>
-      <p className={classes.p}>
-        {obj.borrower === currentUser ? obj.lender : obj.borrower}
+    <li
+      onClick={(e) => {
+        e.preventDefault();
+
+        if (obj.borrower !== userMgr.currentUser.user && btnActive.pending) {
+          loanActMgr.setCurrentTransaction(obj);
+          loanActMgr.searchBorrower(obj);
+        } else if (btnActive.loans && userMgr.currentUser.user === obj.lender) {
+          uiMgr.dispatch({ type: "PAYCONFIRM" });
+          loanActMgr.setCurrentTransaction(obj);
+        }
+      }}
+      className={
+        (btnActive.pending || btnActive.loans) &&
+        userMgr.currentUser.user === obj.lender
+          ? classes.liCursor
+          : classes.li
+      }
+    >
+      <p className={classes.pUser}>
+        {obj.borrower === userMgr.currentUser.user ? obj.lender : obj.borrower}
+        {btnActive.paidBack &&
+          obj.lender === userMgr.currentUser.user &&
+          ` ${obj.transaction_rating}`}
       </p>
-      <p className={classes.p}>${obj.amount}</p>
-      <p className={classes.p}>{obj.creation_date.slice(0, 10)}</p>
-      <p className={classes.p}>{obj.description}</p>
-      {btnActive.pending && currentUser === obj.lender && (
-        <p className={classes.x}>
-          <span
-            className={classes.span1}
-            onClick={() => loanActMgr.onConfirmLoan(obj, "denied")}
-          >
-            X
-          </span>{" "}
-          <span
-            className={classes.span2}
-            onClick={() => loanActMgr.onConfirmLoan(obj, "approved")}
-          >
-            ✓
-          </span>
-        </p>
-      )}
-      {btnActive.loans && currentUser === obj.lender && (
-        <p className={classes.x}>
-          <span className={classes.span2}>✓</span>
-        </p>
-      )}
+      <p className={classes.p}>
+        <span>Amount:</span>{" "}
+        <span className={classes.dataSpan}>${obj.amount}</span>
+      </p>
+      <p className={classes.p}>
+        {btnActive.loans && "Due:"}
+        {btnActive.pending ? "Requested:" : null}
+        {btnActive.paidBack ? "Paid:" : null}
+
+        <span className={classes.dataSpan}>
+          {btnActive.loans && `${obj.due_date.slice(2, 10)}`}
+          {btnActive.pending && `${obj.creation_date.slice(2, 10)}`}
+          {btnActive.paidBack && `${obj.payment_date.slice(2, 10)}`}
+        </span>
+      </p>
+      <p className={classes.p}>
+        <span>For:</span>
+        <span className={classes.dataSpan}>{obj.description}</span>
+      </p>
     </li>
   );
 };

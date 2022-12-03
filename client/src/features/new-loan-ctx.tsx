@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { UserCtx } from "./user-ctx";
-import { LoanRequest } from "../models/loan";
 import { UiCtx } from "./ui-ctx";
 import { LoanActionCtx } from "./loan-action-ctx";
+import { LoanRequest } from "../models/loan";
 
 type NewLoanType = {
   loanData: LoanRequest;
@@ -11,8 +11,8 @@ type NewLoanType = {
   serverErr: boolean;
   setServerErr: React.Dispatch<React.SetStateAction<boolean>>;
   onLoanDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  testApi: (e: React.FormEvent<HTMLImageElement>) => void;
-  confirmApi: (e: React.FormEvent<HTMLImageElement>) => void;
+  searchLender: (e: React.FormEvent<HTMLImageElement>) => void;
+  createLoan: (e: React.FormEvent<HTMLImageElement>) => void;
   clearLoanData: () => void;
   reputation: number;
   setReputation: React.Dispatch<React.SetStateAction<number>>;
@@ -34,8 +34,8 @@ export const NewLoanCtx = createContext<NewLoanType>({
   serverErr: false,
   setServerErr: () => {},
   onLoanDataChange: (e: React.ChangeEvent<HTMLInputElement>) => {},
-  testApi: (e: React.FormEvent<HTMLImageElement>) => {},
-  confirmApi: (e: React.FormEvent<HTMLImageElement>) => {},
+  searchLender: (e: React.FormEvent<HTMLImageElement>) => {},
+  createLoan: (e: React.FormEvent<HTMLImageElement>) => {},
   clearLoanData: () => {},
   reputation: 0,
   setReputation: () => {},
@@ -63,6 +63,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loanData, setLoanData] = useState<LoanRequest>(loanTemplate);
   const [serverErr, setServerErr] = useState(false);
   const [reputation, setReputation] = useState(0);
+
   const onLoanDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     e.preventDefault();
@@ -76,7 +77,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
     setLoanData({ ...loanTemplate, borrower: "", lender: "" });
   };
 
-  const testApi = async (e: React.FormEvent<HTMLImageElement>) => {
+  const searchLender = async (e: React.FormEvent<HTMLImageElement>) => {
     e.preventDefault();
     let param = !userMgr.isLending ? loanData.lender : loanData.borrower;
     uiMgr.dispatch({ type: "LOADING" });
@@ -93,7 +94,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   };
 
-  const confirmApi = async (e: React.FormEvent<HTMLImageElement>) => {
+  const createLoan = async (e: React.FormEvent<HTMLImageElement>) => {
     e.preventDefault();
     let objToSend = loanData;
 
@@ -125,8 +126,8 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
         serverErr,
         setServerErr,
         onLoanDataChange,
-        testApi,
-        confirmApi,
+        searchLender,
+        createLoan,
         clearLoanData,
         reputation,
         setReputation,

@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
 import classes from "./Welcome.module.css";
 import dolladude from "../../assets/images/dolladude.png";
 import loginInactive from "../../assets/images/login-inactive.png";
 import loginActive from "../../assets/images/login-hover.png";
 import registerInactive from "../../assets/images/register-inactive.png";
 import registerActive from "../../assets/images/register-hover.png";
+import { useState, useContext } from "react";
 import { AuthCtx } from "../../features/auth-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 

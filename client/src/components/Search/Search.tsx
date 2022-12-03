@@ -1,10 +1,10 @@
 import classes from "./Search.module.css";
-import { useState, useContext } from "react";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
-import Nav from "../Nav/Nav";
+import { useState, useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
+import Nav from "../Nav/Nav";
 
 const Search: React.FC = () => {
   const userMgr = useContext(UserCtx);
@@ -43,6 +43,7 @@ const Search: React.FC = () => {
           placeholder="for"
           required
           name="description"
+          maxLength={20}
           value={newLoanMgr.loanData.description}
           onChange={newLoanMgr.onLoanDataChange}
         />
@@ -61,7 +62,7 @@ const Search: React.FC = () => {
             src={submitHover ? submitActive : submitInactive}
             onMouseOver={() => setSubmitHover(true)}
             onMouseLeave={() => setSubmitHover(false)}
-            onClick={newLoanMgr.testApi}
+            onClick={newLoanMgr.searchLender}
           />
         </button>
       </form>

@@ -1,7 +1,8 @@
-.li {
+.li,
+.liCursor {
   border-radius: 20px;
   width: 90%;
-  min-height: 16.5vh;
+  min-height: 15.5vh;
   padding: 0.5em;
   border: solid 3px white;
   padding: 1em;
@@ -12,10 +13,25 @@
   position: relative;
 }
 
-.p {
+.liCursor:hover {
+  cursor: pointer;
+  background-color: #b85f9a;
+}
+
+.p,
+.pUser {
   font-family: "raleway";
-  font-size: 2em;
+  font-size: 1.8em;
   color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dataSpan,
+.pUser {
+  font-family: "raleway-heavy";
 }
 
 .h4,
@@ -39,6 +55,38 @@
   cursor: pointer;
   top: 0.5em;
 }
+
+.span1 {
+  right: 2.5em;
+}
+
 .span2 {
-  right: 2em;
+  right: 1em;
+}
+
+@media (max-width: 786px) {
+  .li,
+  .liCursor {
+    height: auto;
+    min-height: unset;
+    gap: 1vh;
+  }
+  .pUser {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .dataSpan {
+    text-align: center;
+  }
+  .span1 {
+    right: unset;
+  }
 }

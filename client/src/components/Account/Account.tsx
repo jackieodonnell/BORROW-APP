@@ -1,9 +1,9 @@
 import classes from "./Account.module.css";
+import accountPic from "../../assets/images/account-hover.png";
 import { useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
-import accountPic from "../../assets/images/account-hover.png";
-import Nav from "../Nav/Nav";
 import { AuthCtx } from "../../features/auth-ctx";
+import Nav from "../Nav/Nav";
 
 const Account: React.FC = () => {
   const userMgr = useContext(UserCtx);

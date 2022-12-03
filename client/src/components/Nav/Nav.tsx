@@ -1,14 +1,11 @@
 import classes from "./Nav.module.css";
-import { useState, useContext } from "react";
 import accountActive from "../../assets/images/account-hover.png";
 import accountInactive from "../../assets/images/account-inactive.png";
 import trackActive from "../../assets/images/track-hover.png";
 import trackInactive from "../../assets/images/track-inactive.png";
 import borrowActive from "../../assets/images/borrow-hover-1.png";
 import borrowInactive from "../../assets/images/borrow-inactive-1.png";
-import lendActive from "../../assets/images/lend-hover.png";
-import lendInactive from "../../assets/images/lend-inactive.png";
-
+import { useState, useContext } from "react";
 import { UiCtx } from "../../features/ui-ctx";
 import { UserCtx } from "../../features/user-ctx";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
@@ -21,7 +18,6 @@ const Nav: React.FC = () => {
   const [accountHover, setAccountHover] = useState(false);
   const [trackHover, setTrackHover] = useState(false);
   const [borrowHover, setBorrowHover] = useState(false);
-  const [lendHover, setLendHover] = useState(false);
 
   return (
     <nav className={classes.nav}>
@@ -54,18 +50,6 @@ const Nav: React.FC = () => {
         onMouseOver={() => setBorrowHover(true)}
         onMouseLeave={() => setBorrowHover(false)}
       />
-      {/* <img
-        src={lendHover ? lendActive : lendInactive}
-        alt="search button"
-        className={classes.btn}
-        onClick={() => {
-          newLoanMgr.clearLoanData();
-          userMgr.setIsLending(true);
-          uiMgr.dispatch({ type: "SEARCH" });
-        }}
-        onMouseOver={() => setLendHover(true)}
-        onMouseLeave={() => setLendHover(false)}
-      /> */}
     </nav>
   );
 };

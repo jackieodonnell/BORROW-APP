@@ -36,12 +36,12 @@ const registerControl = (req, res) => {
           token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
             expiresIn: "1hr",
           });
-          console.log(results.rows[0]);
 
           res.status(201).json({
             user: results.rows[0].username,
             reputation: results.rows[0].reputation,
             token,
+            loans: [],
           });
         }
       );

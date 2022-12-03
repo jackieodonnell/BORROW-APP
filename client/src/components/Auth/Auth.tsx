@@ -1,10 +1,10 @@
 import classes from "./Auth.module.css";
-import { useContext, useState } from "react";
-import { AuthCtx } from "../../features/auth-ctx";
 import cancelActive from "../../assets/images/X-hover.png";
 import cancelInactive from "../../assets/images/X-inactive.png";
 import submitActive from "../../assets/images/submit-hover.png";
 import submitInactive from "../../assets/images/submit-inactive.png";
+import { useContext, useState } from "react";
+import { AuthCtx } from "../../features/auth-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 
 const Auth: React.FC = () => {
