@@ -1,7 +1,5 @@
 import classes from "./Search.module.css";
-import submitActive from "../../assets/images/submit-hover.png";
-import submitInactive from "../../assets/images/submit-inactive.png";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserCtx } from "../../features/user-ctx";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
 import Nav from "../Nav/Nav";
@@ -9,7 +7,6 @@ import Nav from "../Nav/Nav";
 const Search: React.FC = () => {
   const userMgr = useContext(UserCtx);
   const newLoanMgr = useContext(NewLoanCtx);
-  const [submitHover, setSubmitHover] = useState(false);
 
   return (
     <section className={classes.section}>
@@ -56,15 +53,12 @@ const Search: React.FC = () => {
           value={newLoanMgr.loanData.due_date}
           onChange={newLoanMgr.onLoanDataChange}
         />
-        <button type="submit" className={classes.submit}>
-          <img
-            className={classes.submitImg}
-            src={submitHover ? submitActive : submitInactive}
-            onMouseOver={() => setSubmitHover(true)}
-            onMouseLeave={() => setSubmitHover(false)}
-            onClick={newLoanMgr.searchLender}
-          />
-        </button>
+        <input
+          value="submit"
+          type="submit"
+          className={classes.submit}
+          onClick={(e) => newLoanMgr.searchLender(e)}
+        ></input>
       </form>
 
       <Nav />

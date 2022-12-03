@@ -53,11 +53,15 @@
   border: transparent;
   outline: none;
 }
+
 .submit {
   background-color: transparent;
-  border: transparent;
+  color: white;
+  border: solid white 3px;
   cursor: pointer;
+  width: 15em;
+  height: 5vh;
 }
-.submitImg {
-  width: 12.5em;
+.submit:hover {
+  background-color: #b85fb2a2;
 }
