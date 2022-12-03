@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   gap: 2.5vh;
+  gap: 1vh;
 }
 .spinner {
   display: flex;
@@ -20,13 +21,13 @@
 
 .spinner::after {
   content: "";
-  position: absolute;
-  width: 10em;
-  height: 10em;
+  /* position: absolute; */
+  /* width: 10em;
+  height: 10em; */
   background-image: linear-gradient(to bottom left, #9ab85f, #5f9ab8, #b85f9a);
   animation: flip 1s infinite;
 }
-
+/* 
 @keyframes flip {
   0% {
     transform: rotate(0);
@@ -39,4 +40,4 @@
   100% {
     transform: rotateY(180deg) rotateX(180deg);
   }
-}
+} */

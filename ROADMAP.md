@@ -16,7 +16,7 @@
 - [x] Register Route
 - [x] Token Validation Route
 - [x] Refetch User Route
-- [ ] Run Test on Later created Routes
+- [x] Run Test on Later created Routes
 
 # CLIENT
 
