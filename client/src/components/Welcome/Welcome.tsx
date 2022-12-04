@@ -44,7 +44,6 @@ const Welcome: React.FC = () => {
         onMouseLeave={() => setRegisterinHover(false)}
         onClick={() => {
           authMgr.setServerErr(false);
-
           authMgr.setIsLoggin(false);
           uiMgr.dispatch({ type: "AUTH" });
         }}
