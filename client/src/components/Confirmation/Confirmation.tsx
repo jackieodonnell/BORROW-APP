@@ -1,4 +1,4 @@
-import classes from "./Confirmation.module.css";
+import classes from "../../styles_common/common.module.css";
 import { useContext } from "react";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
 import { UserCtx } from "../../features/user-ctx";

@@ -1,4 +1,4 @@
-import classes from "./PayConfirm.module.css";
+import classes from "../../styles_common/common.module.css";
 import { useState, useContext } from "react";
 import { UiCtx } from "../../features/ui-ctx";
 import { LoanActionCtx } from "../../features/loan-action-ctx";
