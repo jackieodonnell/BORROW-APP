@@ -25,7 +25,10 @@ describe("Testing routes and responses for CREATE loan request as", () => {
         expect(serverRes.body).toBeDefined();
         expect(serverRes.body).toEqual(expect.any(Object));
         expect(serverRes.body).toEqual(
-          expect.objectContaining({ loan_id: expect.any(Number) })
+          expect.objectContaining({ createdLoan: expect.any(Object) })
+        );
+        expect(serverRes.body).toEqual(
+          expect.objectContaining({ loans: expect.any(Array) })
         );
       })
       .catch((err) => console.log(err));
