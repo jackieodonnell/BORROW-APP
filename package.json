@@ -9,7 +9,36 @@
     "test": "jest --watchAll --detectOpenHandles",
     "build": "cd client && npm install && npm run build"
   },
-  "author": "Aryse <medictansy@gmail.com>",
+  "contributors": [
+    {
+      "name": "Aryse Tansy",
+      "url": "http://pagano.dev/"
+    },
+    {
+      "name": "Jacqueline O'Donnell",
+      "url": "https://github.com/jackieodonnell"
+    },
+    {
+      "name": "Denasia Furniss",
+      "url": "https://denasia-furniss-portfolio.herokuapp.com/"
+    },
+    {
+      "name": "Audra Omlie",
+      "url": "https://linkedin.com/in/audraomlie"
+    },
+    {
+      "name": "LaToya Simon",
+      "url": "https://github.com/latoyadsimon"
+    },
+    {
+      "name": "Alondra Perez Cortez",
+      "url": "https://sites.google.com/view/alondra-perez-cortez/projects"
+    },
+    {
+      "name": "Cappreccia Swanson",
+      "url": "https://www.linkedin.com/in/cappreccia-swanson"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
