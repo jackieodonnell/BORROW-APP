@@ -1,29 +1,21 @@
 import classes from "./Search.module.css";
 import { useContext } from "react";
-import { UserCtx } from "../../features/user-ctx";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
 import Nav from "../Nav/Nav";
 
 const Search: React.FC = () => {
-  const userMgr = useContext(UserCtx);
   const newLoanMgr = useContext(NewLoanCtx);
 
   return (
     <section className={classes.section}>
-      <h3 className={classes.h3}>
-        {userMgr.isLending ? "Lend to" : "Borrow from"}
-      </h3>
+      <h3 className={classes.h3}>Borrow from</h3>
       <form className={classes.form}>
         <input
           className={classes.input}
           placeholder="username"
           required
-          name={userMgr.isLending ? "borrower" : "lender"}
-          value={
-            userMgr.isLending
-              ? newLoanMgr.loanData.borrower
-              : newLoanMgr.loanData.lender
-          }
+          name="lender"
+          value={newLoanMgr.loanData.lender}
           onChange={newLoanMgr.onLoanDataChange}
         />
         {newLoanMgr.serverErr && (

@@ -87,7 +87,6 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
         uiMgr.dispatch({ type: "DASHBOARD" });
       })
       .catch((err) => {
-        console.log(err);
         setServerErr(true);
         uiMgr.dispatch({ type: "DASHBOARD" });
       });
@@ -106,7 +105,6 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch((err) => {
         uiMgr.dispatch({ type: "DASHBOARD" });
         setServerErr(true);
-        console.log(err);
       });
   };
 

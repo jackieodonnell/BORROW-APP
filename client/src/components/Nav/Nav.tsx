@@ -7,14 +7,11 @@ import borrowActive from "../../assets/images/borrow-hover-1.png";
 import borrowInactive from "../../assets/images/borrow-inactive-1.png";
 import { useState, useContext } from "react";
 import { UiCtx } from "../../features/ui-ctx";
-import { UserCtx } from "../../features/user-ctx";
 import { NewLoanCtx } from "../../features/new-loan-ctx";
 
 const Nav: React.FC = () => {
   const uiMgr = useContext(UiCtx);
-  const userMgr = useContext(UserCtx);
   const newLoanMgr = useContext(NewLoanCtx);
-
   const [accountHover, setAccountHover] = useState(false);
   const [trackHover, setTrackHover] = useState(false);
   const [borrowHover, setBorrowHover] = useState(false);
@@ -44,7 +41,6 @@ const Nav: React.FC = () => {
         className={classes.btn}
         onClick={() => {
           newLoanMgr.clearLoanData();
-          userMgr.setIsLending(false);
           uiMgr.dispatch({ type: "SEARCH" });
         }}
         onMouseOver={() => setBorrowHover(true)}
