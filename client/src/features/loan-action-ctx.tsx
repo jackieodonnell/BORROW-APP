@@ -26,6 +26,8 @@ type CtxType = {
   borrowReputation: number;
   setBorrowReputation: React.Dispatch<React.SetStateAction<number>>;
   searchBorrower: (obj: Loans) => void;
+  serverErr: boolean;
+  setServerErr: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const LoanActionCtx = createContext<CtxType>({
@@ -37,6 +39,8 @@ export const LoanActionCtx = createContext<CtxType>({
   borrowReputation: 0,
   setBorrowReputation: () => {},
   searchBorrower: (obj: Loans) => {},
+  serverErr: false,
+  setServerErr: () => {},
 });
 
 const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -46,10 +50,12 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
   const uiMgr = useContext(UiCtx);
   const [borrowReputation, setBorrowReputation] = useState(0);
   const [loansToFilter, setLoansToFilter] = useState(userMgr.currentUser.loans);
+  const [serverErr, setServerErr] = useState(false);
   const [currentTransaction, setCurrentTransaction] =
     useState<Loans>(transactionTemplate);
 
   const onConfirmLoan = async (obj: Loans, which: string) => {
+    setServerErr(false);
     uiMgr.dispatch({ type: "LOADING" });
     const reqObj = userMgr.currentUser.loans.find((objStored) => {
       return objStored.loan_id === obj.loan_id;
@@ -82,13 +88,14 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       })
       .catch((err) => {
         console.log(err);
+        setServerErr(true);
         uiMgr.dispatch({ type: "DASHBOARD" });
       });
   };
 
   const searchBorrower = async (obj: Loans) => {
     uiMgr.dispatch({ type: "LOADING" });
-
+    setServerErr(false);
     await axios
       .get(`/api/v1/search/${obj.borrower}`)
       .then((serverRes) => {
@@ -98,6 +105,7 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
       })
       .catch((err) => {
         uiMgr.dispatch({ type: "DASHBOARD" });
+        setServerErr(true);
         console.log(err);
       });
   };
@@ -113,6 +121,8 @@ const LoanActionProvider: React.FC<{ children: React.ReactNode }> = ({
         borrowReputation,
         setBorrowReputation,
         searchBorrower,
+        serverErr,
+        setServerErr,
       }}
     >
       {children}

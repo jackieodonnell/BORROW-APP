@@ -78,6 +78,7 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const searchLender = async (e: React.FormEvent<HTMLInputElement>) => {
+    loanActMgr.setServerErr(false);
     e.preventDefault();
     let param = !userMgr.isLending ? loanData.lender : loanData.borrower;
     uiMgr.dispatch({ type: "LOADING" });
@@ -106,15 +107,18 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .post("/api/v1/loan", objToSend)
       .then((serverRes) => {
-        let arr = userMgr.currentUser.loans;
-        arr.unshift(serverRes.data);
-        loanActMgr.setLoansToFilter(arr);
+        userMgr.setCurrentUser((prev) => {
+          let reversed = serverRes.data.loans;
+          reversed.reverse();
+          return { ...prev, loans: reversed };
+        });
         uiMgr.dispatch({ type: "DASHBOARD" });
         clearLoanData();
       })
       .catch((err) => {
         uiMgr.dispatch({ type: "CONFIRMATION" });
         console.log(err.response);
+        loanActMgr.setServerErr(true);
       });
   };
 
