@@ -49,6 +49,11 @@
   margin-top: 5vh;
   cursor: pointer;
 }
+.feedBack {
+  color: white;
+  font-size: 1.6em;
+  font-family: "raleway-heavy";
+}
 
 @media (max-width: 786px) {
   .close {

@@ -22,6 +22,7 @@ const Auth: React.FC = () => {
       />
       <form className={classes.form}>
         <p className={classes.p}>{authMgr.isLoggin ? "Login" : "Register"}</p>
+
         {authMgr.isLoggin || (
           <label className={classes.label} htmlFor="email">
             <input
@@ -57,16 +58,9 @@ const Auth: React.FC = () => {
           />
         </label>
 
-        {authMgr.isLoggin || (
-          <label className={classes.label} htmlFor="confirmPassword">
-            <input
-              className={classes.input}
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm password"
-            />
-          </label>
-        )}
+        <p className={classes.feedBack}>
+          {authMgr.serverErr && `${authMgr.errMsg}`}
+        </p>
         <img
           onClick={authMgr.onSubmitAuth}
           onMouseEnter={() => setIsActive(true)}
