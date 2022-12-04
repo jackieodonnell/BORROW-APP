@@ -98,44 +98,72 @@ Deliver MVP with the following features:
 
 #### SCRUM Master
 
+---
+
 **:point_right: Cappreccia Swanson**
 :e-mail: capprecciaswanson@gmail.com
 :computer: [Linkedin](https://www.linkedin.com/in/cappreccia-swanson)
 
+---
+
 #### Data Analyst
+
+---
 
 **:point_right: Alondra Perez Cortez**
 :e-mail: apcalondraperezcortez@gmail.com
 :computer: [Portfolio](https://sites.google.com/view/alondra-perez-cortez/projects)
 
+---
+
 #### Product Owner
+
+---
 
 **:point_right: LaToya Simon**
 :e-mail: 1stforgottentoy@gmail.com
 :computer: [Github](https://github.com/latoyadsimon)
 
+---
+
 #### UI/UX
+
+---
 
 **:point_right: Audra Omlie**
 :e-mail: audraomlie@gmail.com
 :computer: [Linkedin](linkedin.com/in/audraomlie)
 
+---
+
 #### Frontend
+
+---
 
 **:point_right: Olivia Bloway**
 :e-mail: [Linkedin](https://www.linkedin.com/in/liv-bloway-461306211/)
 :computer: [Portfolio](www.oliviabloway.com)
 
+---
+
 **:point_right: Denasia Furniss**
 :e-mail: denasiafurniss@gmail.com
 :computer: [Portfolio](denasia-furniss-portfolio.herokuapp.com/)
 
+---
+
 #### Backend
+
+---
 
 **:point_right: Jacqueline O'Donnell**
 :e-mail: [Linkedin](https://www.linkedin.com/in/jackieodonnell/)
 :computer: [Github](https://github.com/jackieodonnell)
 
+---
+
 **:point_right: Aryse Tansy**
 :e-mail: paganowebdev@gmail.com
 :computer: [Portfolio](https://www.pagano.dev/)
+
+---
