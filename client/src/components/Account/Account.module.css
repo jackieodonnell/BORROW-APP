@@ -49,11 +49,6 @@
   color: rgb(69, 68, 68);
   font-family: "raleway";
 }
-@font-face {
-  font-family: "Raleway-heavy";
-  src: url("../../assets/fonts/raleway/Raleway-Heavy.ttf");
-  font-style: normal;
-}
 
 @media (max-width: 786px) {
   .icon {

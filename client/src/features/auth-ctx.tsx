@@ -83,7 +83,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       })
       .catch((err) => {
         uiMgr.dispatch({ type: "AUTH" });
-        console.log(err);
         setServerErr(true);
         setErrMsg(err.response.data.message);
       });
