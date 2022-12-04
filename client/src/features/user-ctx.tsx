@@ -12,23 +12,18 @@ interface Value {
   currentUser: User;
   setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
   clearCurrentUser: () => void;
-  isLending: boolean;
-  setIsLending: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UserCtx = createContext<Value>({
   currentUser: currentUserTemplate,
   setCurrentUser: () => {},
   clearCurrentUser: () => {},
-  isLending: false,
-  setIsLending: () => {},
 });
 
 const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [currentUser, setCurrentUser] = useState<User>(currentUserTemplate);
-  const [isLending, setIsLending] = useState(false);
 
   const clearCurrentUser = () => setCurrentUser(currentUserTemplate);
 
@@ -38,8 +33,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         currentUser,
         setCurrentUser,
         clearCurrentUser,
-        isLending,
-        setIsLending,
       }}
     >
       {children}

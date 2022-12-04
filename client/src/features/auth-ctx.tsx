@@ -113,7 +113,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           })
           .catch((err) => {
             uiMgr.dispatch({ type: "CLOSE" });
-            console.log(err);
             return setIsAuth(false);
           });
       }

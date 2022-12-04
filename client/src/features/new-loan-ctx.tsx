@@ -49,8 +49,8 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   const uiMgr = useContext(UiCtx);
 
   const loanTemplate = {
-    lender: userMgr.isLending ? userMgr.currentUser.user : "",
-    borrower: !userMgr.isLending ? userMgr.currentUser.user : "",
+    lender: "",
+    borrower: userMgr.currentUser.user,
     status: "pending",
     creation_date: new Date().toISOString(),
     due_date: "",
@@ -78,10 +78,11 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const searchLender = async (e: React.FormEvent<HTMLInputElement>) => {
+    uiMgr.dispatch({ type: "LOADING" });
     loanActMgr.setServerErr(false);
     e.preventDefault();
-    let param = !userMgr.isLending ? loanData.lender : loanData.borrower;
-    uiMgr.dispatch({ type: "LOADING" });
+    let param = loanData.lender;
+
     await axios
       .get(`/api/v1/search/${param}`)
       .then((serverRes) => {
@@ -107,17 +108,15 @@ const NewLoanProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .post("/api/v1/loan", objToSend)
       .then((serverRes) => {
+        serverRes.data.loans.reverse();
         userMgr.setCurrentUser((prev) => {
-          let reversed = serverRes.data.loans;
-          reversed.reverse();
-          return { ...prev, loans: reversed };
+          return { ...prev, loans: serverRes.data.loans };
         });
         uiMgr.dispatch({ type: "DASHBOARD" });
         clearLoanData();
       })
       .catch((err) => {
         uiMgr.dispatch({ type: "CONFIRMATION" });
-        console.log(err.response);
         loanActMgr.setServerErr(true);
       });
   };
