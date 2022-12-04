@@ -23,6 +23,10 @@ interface ctxType {
   onSubmitAuth: (e: React.FormEvent<HTMLImageElement>) => void;
   onLogout: () => void;
   isTokenExp: () => void;
+  serverErr: boolean;
+  setServerErr: React.Dispatch<React.SetStateAction<boolean>>;
+  errMsg: string;
+  setErrMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const AuthCtx = createContext<ctxType>({
@@ -36,6 +40,10 @@ export const AuthCtx = createContext<ctxType>({
   onSubmitAuth: () => {},
   onLogout: () => {},
   isTokenExp: () => {},
+  serverErr: true,
+  setServerErr: () => {},
+  errMsg: "",
+  setErrMsg: () => {},
 });
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -46,8 +54,11 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isAuth, setIsAuth] = useState(false);
   const [isLoggin, setIsLoggin] = useState(false);
   const [inputData, setInputData] = useState<inputData>(inputDataTemplate);
+  const [serverErr, setServerErr] = useState(true);
+  const [errMsg, setErrMsg] = useState("");
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setServerErr(false);
     const { name, value } = e.target;
     setInputData((prev) => {
       return { ...prev, [name]: value };
@@ -71,8 +82,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         onClearInputData();
       })
       .catch((err) => {
-        uiMgr.dispatch({ type: "CLOSE" });
+        uiMgr.dispatch({ type: "AUTH" });
         console.log(err);
+        setServerErr(true);
+        setErrMsg(err.response.data.message);
       });
   };
 
@@ -128,6 +141,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         onSubmitAuth,
         onLogout,
         isTokenExp,
+        serverErr,
+        setServerErr,
+        errMsg,
+        setErrMsg,
       }}
     >
       {children}

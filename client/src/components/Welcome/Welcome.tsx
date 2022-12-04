@@ -30,6 +30,7 @@ const Welcome: React.FC = () => {
         onMouseOver={() => setLoginHover(true)}
         onMouseLeave={() => setLoginHover(false)}
         onClick={() => {
+          authMgr.setServerErr(false);
           uiMgr.dispatch({ type: "AUTH" });
           authMgr.setIsLoggin(true);
         }}
@@ -42,6 +43,8 @@ const Welcome: React.FC = () => {
         onMouseOver={() => setRegisterinHover(true)}
         onMouseLeave={() => setRegisterinHover(false)}
         onClick={() => {
+          authMgr.setServerErr(false);
+
           authMgr.setIsLoggin(false);
           uiMgr.dispatch({ type: "AUTH" });
         }}
